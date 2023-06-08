@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Jun 2023 pada 11.15
--- Versi server: 10.1.34-MariaDB
--- Versi PHP: 5.6.37
+-- Generation Time: 08 Jun 2023 pada 18.58
+-- Versi Server: 10.1.25-MariaDB
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -34,6 +34,16 @@ CREATE TABLE `alternatif` (
   `periode` varchar(30) NOT NULL,
   `lihat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `alternatif`
+--
+
+INSERT INTO `alternatif` (`id_alternatif`, `NIP`, `periode`, `lihat`) VALUES
+(10, '0206109101', '2023-Juni', 1),
+(11, '0206109102', '2023-Juni', 1),
+(12, '0206109104', '2023-Juni', 1),
+(13, '0206109111', '2023-Juni', 1);
 
 -- --------------------------------------------------------
 
@@ -92,7 +102,7 @@ CREATE TABLE `jabatan` (
 
 INSERT INTO `jabatan` (`id`, `nama_jabatan`, `job_desc`) VALUES
 (1, 'STAF', 'Melayani Mahasiswa dan Dosen'),
-(3, 'DOSEN', 'MENGJAR DENGAN BAIK DAN BIJAK KEPADA MAHASISWA TIDAK MEMPERSULIT MAHASISWA');
+(3, 'STRUTURAL', 'MENGJAR DENGAN BAIK DAN BIJAK KEPADA MAHASISWA TIDAK MEMPERSULIT MAHASISWA');
 
 -- --------------------------------------------------------
 
@@ -114,9 +124,10 @@ CREATE TABLE `karyawan` (
 --
 
 INSERT INTO `karyawan` (`id_kar`, `NIP`, `nama_karyawan`, `JK`, `Jabatan`, `status`) VALUES
-(12, '0206109101', 'MARDIYANTO, M.T.I', 'Pria', '3', 'ok'),
-(13, '0206109102', 'JONI, M.T.I', 'Pria', '3', 'ok'),
-(14, '0206109104', 'AKABEST', 'Pria', '3', 'ok');
+(12, '0206109101', 'MARDIYANTO, M.T.I', 'Pria', '1', 'ok'),
+(13, '0206109102', 'JONI, M.T.I', 'Pria', '1', 'ok'),
+(14, '0206109104', 'AKABEST', 'Pria', '1', 'ok'),
+(15, '0206109111', 'TRI SUILOWATI', 'Wanita', '1', 'ok');
 
 -- --------------------------------------------------------
 
@@ -155,6 +166,36 @@ CREATE TABLE `nilai_alternatif` (
   `nilai` int(11) NOT NULL,
   `periode` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `nilai_alternatif`
+--
+
+INSERT INTO `nilai_alternatif` (`id_nilai_alternatif`, `id_alternatif`, `id_kriteria`, `nilai`, `periode`) VALUES
+(55, 10, 1, 100, '2023-Juni'),
+(56, 10, 2, 100, '2023-Juni'),
+(57, 10, 3, 100, '2023-Juni'),
+(58, 10, 4, 100, '2023-Juni'),
+(59, 10, 5, 100, '2023-Juni'),
+(60, 10, 6, 100, '2023-Juni'),
+(61, 11, 1, 100, '2023-Juni'),
+(62, 11, 2, 80, '2023-Juni'),
+(63, 11, 3, 100, '2023-Juni'),
+(64, 11, 4, 60, '2023-Juni'),
+(65, 11, 5, 80, '2023-Juni'),
+(66, 11, 6, 60, '2023-Juni'),
+(67, 12, 1, 100, '2023-Juni'),
+(68, 12, 2, 100, '2023-Juni'),
+(69, 12, 3, 100, '2023-Juni'),
+(70, 12, 4, 100, '2023-Juni'),
+(71, 12, 5, 100, '2023-Juni'),
+(72, 12, 6, 60, '2023-Juni'),
+(73, 13, 1, 60, '2023-Juni'),
+(74, 13, 2, 100, '2023-Juni'),
+(75, 13, 3, 100, '2023-Juni'),
+(76, 13, 4, 60, '2023-Juni'),
+(77, 13, 5, 80, '2023-Juni'),
+(78, 13, 6, 80, '2023-Juni');
 
 -- --------------------------------------------------------
 
@@ -261,141 +302,130 @@ INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `level`) VALUES
 --
 
 --
--- Indeks untuk tabel `alternatif`
+-- Indexes for table `alternatif`
 --
 ALTER TABLE `alternatif`
   ADD PRIMARY KEY (`id_alternatif`);
 
 --
--- Indeks untuk tabel `desc_kriteria`
+-- Indexes for table `desc_kriteria`
 --
 ALTER TABLE `desc_kriteria`
   ADD PRIMARY KEY (`id_desc`);
 
 --
--- Indeks untuk tabel `jabatan`
+-- Indexes for table `jabatan`
 --
 ALTER TABLE `jabatan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `karyawan`
+-- Indexes for table `karyawan`
 --
 ALTER TABLE `karyawan`
   ADD PRIMARY KEY (`id_kar`);
 
 --
--- Indeks untuk tabel `kriteria`
+-- Indexes for table `kriteria`
 --
 ALTER TABLE `kriteria`
   ADD PRIMARY KEY (`id_kriteria`);
 
 --
--- Indeks untuk tabel `nilai_alternatif`
+-- Indexes for table `nilai_alternatif`
 --
 ALTER TABLE `nilai_alternatif`
   ADD PRIMARY KEY (`id_nilai_alternatif`);
 
 --
--- Indeks untuk tabel `nilai_kriteria`
+-- Indexes for table `nilai_kriteria`
 --
 ALTER TABLE `nilai_kriteria`
   ADD PRIMARY KEY (`id_nilai`);
 
 --
--- Indeks untuk tabel `pemberian_skor`
+-- Indexes for table `pemberian_skor`
 --
 ALTER TABLE `pemberian_skor`
   ADD PRIMARY KEY (`id_pemberian`);
 
 --
--- Indeks untuk tabel `periode`
+-- Indexes for table `periode`
 --
 ALTER TABLE `periode`
   ADD PRIMARY KEY (`id_periode`);
 
 --
--- Indeks untuk tabel `temp`
+-- Indexes for table `temp`
 --
 ALTER TABLE `temp`
   ADD PRIMARY KEY (`id_temp`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `alternatif`
+-- AUTO_INCREMENT for table `alternatif`
 --
 ALTER TABLE `alternatif`
-  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
--- AUTO_INCREMENT untuk tabel `desc_kriteria`
+-- AUTO_INCREMENT for table `desc_kriteria`
 --
 ALTER TABLE `desc_kriteria`
   MODIFY `id_desc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
 --
--- AUTO_INCREMENT untuk tabel `jabatan`
+-- AUTO_INCREMENT for table `jabatan`
 --
 ALTER TABLE `jabatan`
   MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
--- AUTO_INCREMENT untuk tabel `karyawan`
+-- AUTO_INCREMENT for table `karyawan`
 --
 ALTER TABLE `karyawan`
-  MODIFY `id_kar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
+  MODIFY `id_kar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
--- AUTO_INCREMENT untuk tabel `kriteria`
+-- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
   MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
--- AUTO_INCREMENT untuk tabel `nilai_alternatif`
+-- AUTO_INCREMENT for table `nilai_alternatif`
 --
 ALTER TABLE `nilai_alternatif`
-  MODIFY `id_nilai_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
+  MODIFY `id_nilai_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 --
--- AUTO_INCREMENT untuk tabel `nilai_kriteria`
+-- AUTO_INCREMENT for table `nilai_kriteria`
 --
 ALTER TABLE `nilai_kriteria`
   MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
--- AUTO_INCREMENT untuk tabel `pemberian_skor`
+-- AUTO_INCREMENT for table `pemberian_skor`
 --
 ALTER TABLE `pemberian_skor`
   MODIFY `id_pemberian` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT untuk tabel `periode`
+-- AUTO_INCREMENT for table `periode`
 --
 ALTER TABLE `periode`
   MODIFY `id_periode` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
--- AUTO_INCREMENT untuk tabel `temp`
+-- AUTO_INCREMENT for table `temp`
 --
 ALTER TABLE `temp`
   MODIFY `id_temp` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-COMMIT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
