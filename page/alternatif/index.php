@@ -103,11 +103,8 @@ if (isset($_GET['ta'])) {
                 <option disabled selected>-- Pilih Alternatif --</option>
                 <?php 
                 //$sql = "select * from karyawan where status='$_GET[d]'";
-                $sql = "SELECT * from karyawan 
-                where NIP NOT IN (select NIP from alternatif where periode ='$ta')
-                order by NIP
-             
-                ";
+            $sql = "SELECT * from karyawan where NIP NOT IN (select NIP from alternatif where periode ='$ta') order by NIP";
+                // $sql = "SELECT * from karyawan order by NIP";
                 $query = mysqli_query($con, $sql);
                 while ($row = mysqli_fetch_assoc($query)) {
                   echo "<option value=$row[NIP]>$row[NIP] - $row[nama_karyawan]</option>";

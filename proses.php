@@ -1,3 +1,4 @@
+
 <?php 
 
 	@session_start();
@@ -144,7 +145,7 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- sidebar menu: : style can be found in sidebar.less -->
-     <?php include "menu.php"?>
+     <?php include "menu.php"; ?>
     </section>
     <!-- /.sidebar -->
   </aside>
@@ -166,116 +167,7 @@
     <!-- Main content -->
     <section class="content">
         
-        <?php 
-
-          $page = @$_GET['p'];
-          $action = @$_GET['act'];
-
-          switch ($page) {
-            case 'user':
-              if ($action == "create") {
-                include 'page/user/create.php';
-              } else if ($action == "edit") {
-                include 'page/user/edit.php';
-              } else {
-                include 'page/user/index.php';
-              }
-              break;
-
-            case 'criteria':
-              if ($action == "create") {
-                include 'page/kriteria/create.php';
-              } else if ($action == "edit") {
-                include 'page/kriteria/edit.php';
-              } else if ($action == "show") {
-                include 'page/kriteria/show.php';
-              } else {
-                include 'page/kriteria/index.php';
-              }
-              break;
-
-            case 'create_skor':
-              if ($action == "edit") {
-                include 'page/pemberiannilai/edit.php';
-              } else {
-                include 'page/pemberiannilai/create.php';
-              }
-              break;
-
-            case 'karyawan':
-              if ($action == "create") {
-                include 'page/karyawan/create.php';
-              }else if ($action == "edit") {
-                include 'page/karyawan/edit.php';
-              }else if ($action == "upload") {
-                include 'page/karyawan/upload.php';
-              } else {
-                include 'page/karyawan/index.php';
-              }
-              break;
-
-            case 'periode':
-              if ($action == "create") {
-                include 'page/periode/create.php';
-              }else if ($action == "edit") {
-                include 'page/periode/edit.php';
-              }else{
-                include 'page/periode/index.php';
-              }
-              break;
-
-            case 'jabatan':
-              if ($action == "create") {
-                include 'page/jabatan/create.php';
-              }else if ($action == "edit") {
-                include 'page/jabatan/edit.php';
-              }else{
-                include 'page/jabatan/index.php';
-              }
-              break;
-
-            case 'bobot':
-              include 'page/bobot/index.php';
-              break;
-            
-            case 'TRUNCATE':
-              include 'page/pus/del.php';
-              break;
-             case 'apus-import':
-              include 'page/pus/imp.php';
-              break;
-            
-
-            case 'alternatif':
-              if(@$_GET['d']!="")
-                include 'page/alternatif/index.php';
-              else
-                //include 'page/alternatif/pilihstatus.php';
-                include 'page/alternatif/index.php';
-              break;
-
-            case 'report':
-              include 'page/laporan/index.php';
-              break;
-
-            case 'rank':
-              include 'page/peringkat/index.php';
-              break;  
-
-            case 'fuzzy':
-              include 'page/fuzzy/index.php';
-              break; 
-
-            case 'fuzzy-upload':
-              include 'page/fuzzy/upload.php';   
-              break;        
-            
-            default:
-              include 'page/dashboard.php';
-              break;
-          }
-
-         ?>      
+    <?php include "int.php"; ?>  
 
     </section>
     <!-- /.content -->
