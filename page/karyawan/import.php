@@ -40,6 +40,6 @@ if ($query) {
 //echo "</pre>";
  
 }
-echo "<script>alert('Data yang berhasil di import : ".$sukses.", Data yang gagal diimport : ".$gagal."');window.location.href='../../index.php?p=karyawan&act=upload&ta=".$_POST['periode']."'</script>";
-//header('location: ../../index.php?p=karyawan&act=upload');
+echo "<script>alert('Data yang berhasil di import : ".$sukses.", Data yang gagal diimport : ".$gagal."');window.location.href='../../admin.php?p=karyawan&act=upload&ta=".$_POST['periode']."'</script>";
+//header('location: ../../admin.php?p=karyawan&act=upload');
 ?>

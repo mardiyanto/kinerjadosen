@@ -12,7 +12,7 @@
           if ($query){
               $back = "UPDATE karyawan set status='na' where periode = '".$_GET['ta']."'";
               mysqli_query($con, $back);
-            echo "<script>alert('Data telah direset ulang');window.location.href='index.php?p=alternatif'</script>";
+            echo "<script>alert('Data telah direset ulang');window.location.href='admin.php?p=alternatif'</script>";
           } else {
             echo mysqli_error($con);
           }

@@ -22,7 +22,7 @@ if (isset($_POST['login'])) {
             $_SESSION['email_mahasiswa'] = $row['email_mahasiswa'];
 
             // Redirect ke halaman setelah login berhasil
-            echo "<script>alert('login berhasil');window.location.href='halaman_beranda.php'</script>"; 
+            echo "<script>alert('login berhasil');window.location.href='index.php?aksi=home'</script>"; 
             exit();
         } else {
             // Password salah

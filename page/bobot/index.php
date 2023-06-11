@@ -4,7 +4,7 @@
     $sql = "truncate table nilai_kriteria";
     $query = mysqli_query($con, $sql);
     if ($query) {
-      echo "<script>alert('Data telah dihapus!');window.location.href='index.php?p=bobot'</script>";
+      echo "<script>alert('Data telah dihapus!');window.location.href='admin.php?p=bobot'</script>";
     }else {
       echo mysqli_error($con);
     }
@@ -21,7 +21,7 @@
       $insum=$insum+$nilai;
     }
     if ($insum!=100) {
-       echo "<script>alert('Bobot tidak 100% harap cek kembali');window.location.href='index.php?p=bobot'</script>";
+       echo "<script>alert('Bobot tidak 100% harap cek kembali');window.location.href='admin.php?p=bobot'</script>";
        break;
     }
 
@@ -34,7 +34,7 @@
          mysqli_query($con, $sql);
     
     }
-    echo "<script>alert('Data berhasil disimpan!');window.location.href='index.php?p=bobot'</script>";
+    echo "<script>alert('Data berhasil disimpan!');window.location.href='admin.php?p=bobot'</script>";
   }
 
   $query = mysqli_query($con, "select * from nilai_kriteria");
@@ -141,7 +141,7 @@
                 </tr>
                 <tr>
                   <td colspan="<?= ($count+1) ?>" align="right">
-                    <a href="index.php?p=bobot&delete" class="btn btn-danger" onclick="return confirm('Semua nilai akan terhapus, Ingin melanjutkan?')">Hapus</a>
+                    <a href="admin.php?p=bobot&delete" class="btn btn-danger" onclick="return confirm('Semua nilai akan terhapus, Ingin melanjutkan?')">Hapus</a>
                   </td>
                 </tr>
               </tfoot>

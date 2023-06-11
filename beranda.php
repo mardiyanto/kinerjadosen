@@ -1,21 +1,10 @@
-<?php 
+<?php
+// Menghubungkan ke database
+include 'config/connection.php';
+// Memulai sesi
+session_start();
+?>
 
-	@session_start();
-  error_reporting(0);
-	include 'config/connection.php';
-
-	// if (@$_SESSION['logged'] == false) {
-	// 	header('Location:login.php');
-	// }
-  if ($_SESSION['id_mahasiswa'] == null) {
-    echo "<script>alert('Harap login terlebih dahulu');window.location.href='login-msiswa.php'</script>";
-  }
-   // Menampilkan data pengguna yang sudah login
-$id_mahasiswa = $_SESSION['id_mahasiswa'];
-$nama_mahasiswa = $_SESSION['nama_mahasiswa'];
-$nim = $_SESSION['nim'];
-$email_mahasiswa = $_SESSION['email_mahasiswa'];   
- ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,6 +30,26 @@ $email_mahasiswa = $_SESSION['email_mahasiswa'];
   <!--charts js-->
   <script src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
   <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+  
+  <style type="text/css">
+    body{
+
+    }
+    .atas{
+      color: white;
+    }
+
+    /*footer{
+      margin-top: -100px;
+      width: 100%;
+      position: relative;
+    }*/
+    .wrapper{
+      height: 90%;
+    }
+  </style>
+  
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -48,34 +57,48 @@ $email_mahasiswa = $_SESSION['email_mahasiswa'];
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body class="hold-transition skin-blue layout-top-nav">
-    <div class="wrapper">
+<body class="hold-transition skin-blue sidebar-mini">
 
-<?php include"atas.php"; ?>
-      <!-- Full Width Column -->
-      <div class="content-wrapper">
-        <div class="container">
-          <!-- Content Header (Page header) -->
-          <section class="content-header">
-           
-          </section>
-          <?php include"tengah.php";?>
-          <!-- Main content -->
-          <section class="content">
-           
-            
-          </section><!-- /.content -->
-        </div><!-- /.container -->
-      </div><!-- /.content-wrapper -->
-      <footer class="main-footer">
-        <div class="container">
-          <div class="pull-right hidden-xs">
-            <b>Version</b> 2.3.0
-          </div>
-          <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
-        </div><!-- /.container -->
-      </footer>
-    </div><!-- ./wrapper -->
+
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="index.php" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini">GMI</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>E</b>-Kinerja</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+
+      <div class="navbar-custom-menu">
+   
+      </div>
+    </nav>
+  </header>
+  <div class="content">
+    <!-- Main content -->
+    <section class="content">
+        <?php include"tengah.php";?>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  
+
+<!-- ./wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1.0.0
+    </div>
+    <strong>Copyright &copy; 2019 <a href="https://github.com/pottsed">Pottsed</a>.</strong> All rights
+    reserved.
+  </footer>
+
 <!-- jQuery 2.2.3 -->
 <script src="assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->

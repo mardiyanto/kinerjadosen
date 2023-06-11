@@ -29,7 +29,7 @@ if (isset($_GET['ta'])) {
         mysqli_query($con, $sql);
       }
 
-      echo "<script>alert('Data $_POST[NIP] berhasil disimpan!');window.location.href='index.php?p=alternatif&ta=$ta'</script>";
+      echo "<script>alert('Data $_POST[NIP] berhasil disimpan!');window.location.href='admin.php?p=alternatif&ta=$ta'</script>";
 
 	}
 

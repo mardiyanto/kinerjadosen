@@ -10,7 +10,7 @@
 		$sql = "insert into desc_kriteria values(null, '$id_kriteria', '$deskripsi', '$nilai')";
 		$query = mysqli_query($con, $sql);
 		if ($query) {
-			echo "<script>alert('Data berhasil ditambahkan!');window.location.href='index.php?p=criteria&act=show&id=$id_kriteria'</script>";
+			echo "<script>alert('Data berhasil ditambahkan!');window.location.href='admin.php?p=criteria&act=show&id=$id_kriteria'</script>";
 		} else {
 			echo "Error : " . mysqli_error($con);
 		}

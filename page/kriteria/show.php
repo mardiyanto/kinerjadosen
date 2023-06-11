@@ -10,7 +10,7 @@
 	    $sql = "delete from desc_kriteria where id_desc='$id_desc'";
 	    $query = mysqli_query($con, $sql);
 	    if ($query) {
-	        echo "<script>alert('Data berhasil dihapus!');window.location.href='index.php?p=criteria&act=show&id=$id'</script>";
+	        echo "<script>alert('Data berhasil dihapus!');window.location.href='admin.php?p=criteria&act=show&id=$id'</script>";
 	    } else {
 	      echo mysqli_error($con);
 	    }
@@ -51,8 +51,8 @@
 		        		 	<td><?= $row['deskripsi'] ?></td>
 		        		 	<td><?= $row['nilai'] ?></td>
 		        		 	<td>
-		        		 		<a href="index.php?p=create_skor&act=edit&id=<?= $id ?>&id_desc=<?= $row['id_desc'] ?>" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
-                  				<a href="index.php?p=criteria&act=show&delete&id=<?= $id ?>&id_desc=<?= $row['id_desc'] ?>" class="btn btn-danger" onclick="return confirm('Data akan terhapus?')"><i class="glyphicon glyphicon-trash"></i></a>
+		        		 		<a href="admin.php?p=create_skor&act=edit&id=<?= $id ?>&id_desc=<?= $row['id_desc'] ?>" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
+                  				<a href="admin.php?p=criteria&act=show&delete&id=<?= $id ?>&id_desc=<?= $row['id_desc'] ?>" class="btn btn-danger" onclick="return confirm('Data akan terhapus?')"><i class="glyphicon glyphicon-trash"></i></a>
 		        		 	</td>
 		        		 </tr>
 		        		<?php endwhile; ?>
@@ -60,7 +60,7 @@
 		        	<tfoot>
 		        		<tr>
 		        			<td colspan="5" align="left">
-		        				<a href="index.php?p=create_skor&id=<?= $id ?>" class="btn btn-primary">Tambah Deskripsi</a>
+		        				<a href="admin.php?p=create_skor&id=<?= $id ?>" class="btn btn-primary">Tambah Deskripsi</a>
 		        			</td>
 		        		</tr>
 		        	</tfoot>

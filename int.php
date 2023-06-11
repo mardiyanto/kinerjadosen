@@ -742,7 +742,7 @@ elseif($_GET['aksi']=='pertanyaan'){
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////
     
-    elseif($_GET['aksi']=='editjawaban'){
+elseif($_GET['aksi']=='editjawaban'){
     $tebaru=mysqli_query($koneksi," SELECT * FROM jawaban WHERE id_jawaban=$_GET[id_jawaban] ");
     $t=mysqli_fetch_array($tebaru);
     echo"
@@ -774,5 +774,38 @@ elseif($_GET['aksi']=='pertanyaan'){
                             </div> </div>
     </form></div> </div></div></div>
     ";
-    }
+}
+elseif($_GET['aksi']=='penilaian'){
+    echo"
+    <div class='row'>
+     <div class='col-lg-12'>
+        <div class='panel panel-default'>
+            <div class='panel-heading'>
+            </div>
+            <div class='panel-body'>";
+           // Mendapatkan data penilaian berdasarkan id_dosen
+$query_penilaian = "SELECT id_dosen, COUNT(*) AS jumlah_penilaian, SUM(nilai) AS total_nilai, AVG(nilai) AS rata_nilai FROM penilaian GROUP BY id_dosen";
+$result_penilaian = mysqli_query($koneksi, $query_penilaian);
+
+// Menampilkan hasil perhitungan
+while ($row_penilaian = mysqli_fetch_assoc($result_penilaian)) {
+    $id_dosen = $row_penilaian['id_dosen'];
+    $jumlah_penilaian = $row_penilaian['jumlah_penilaian'];
+    $total_nilai = $row_penilaian['total_nilai'];
+    $rata_nilai = $row_penilaian['rata_nilai'];
+
+    echo "ID Dosen: $id_dosen<br>";
+    echo "Jumlah Penilaian: $jumlah_penilaian<br>";
+    echo "Total Nilai: $total_nilai<br>";
+    echo "Rata-rata Nilai: $rata_nilai<br>";
+    echo "<br>";
+}
+
+            echo"</div> 
+        </div>
+     </div>
+    </div>
+    ";
+}
+
 ?>

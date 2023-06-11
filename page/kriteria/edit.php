@@ -13,7 +13,7 @@
     $sql = "update kriteria set kriteria='$kriteria', seo='$seo' where id_kriteria='$id'";
     $query = mysqli_query($con, $sql);
     if ($query) {
-      echo "<script>alert('Data berhasil diubah!');window.location.href='index.php?p=criteria'</script>";
+      echo "<script>alert('Data berhasil diubah!');window.location.href='admin.php?p=criteria'</script>";
     } else {
       echo "Error : " . mysqli_error($con);
     }

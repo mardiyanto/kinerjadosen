@@ -9,18 +9,18 @@
       $seo=$tahun."-".$bulan;  
       $cekagy=mysqli_query($con,"SELECT * from periode where label like '".$label."'");
       if (mysqli_num_rows($cekagy) > 0) {
-        echo "<script>alert('Data ".$label." Sudah Tersedia!');window.location.href='index.php?p=periode'</script>";
+        echo "<script>alert('Data ".$label." Sudah Tersedia!');window.location.href='admin.php?p=periode'</script>";
       }else{
         $input=mysqli_query($con,"INSERT INTO periode values (null, '$seo','$label','$tahun','$bulan')");
         if ($input == TRUE) {
-          echo "<script>alert('Data ".$label." Berhasil Ditambahkan!');window.location.href='index.php?p=periode'</script>";
+          echo "<script>alert('Data ".$label." Berhasil Ditambahkan!');window.location.href='admin.php?p=periode'</script>";
         }else{
-          echo "<script>alert('Data ".$label." Gagal dieksekusi!');window.location.href='index.php?p=periode&act=create'</script>";
+          echo "<script>alert('Data ".$label." Gagal dieksekusi!');window.location.href='admin.php?p=periode&act=create'</script>";
         }
       }
 
     // }else{
-    //   echo "<script>alert('Tahun Ajaran Salah!');window.location.href='index.php?p=periode&act=create'</script>";
+    //   echo "<script>alert('Tahun Ajaran Salah!');window.location.href='admin.php?p=periode&act=create'</script>";
     // }
 
     

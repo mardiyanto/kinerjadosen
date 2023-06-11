@@ -16,7 +16,7 @@
 		$sql = "update desc_kriteria set deskripsi='$deskripsi', nilai='$nilai' where id_desc='$id_desc'";
 		$query = mysqli_query($con, $sql);
 		if ($query) {
-			echo "<script>alert('Data berhasil diubah!');window.location.href='index.php?p=criteria&act=show&id=$id_kriteria'</script>";
+			echo "<script>alert('Data berhasil diubah!');window.location.href='admin.php?p=criteria&act=show&id=$id_kriteria'</script>";
 		} else {
 			echo "Error : " . mysqli_error($con);
 		}

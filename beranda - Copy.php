@@ -31,7 +31,7 @@ $email_mahasiswa = $_SESSION['email_mahasiswa'];
         <p>Email: <?php echo $email_mahasiswa; ?></p>
 
         <!-- Tombol untuk logout -->
-        <a href="logout.php" class="btn btn-primary">Logout</a>
+        <a href="logout-mhs.php" class="btn btn-primary">Logout</a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

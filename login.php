@@ -23,7 +23,7 @@
       $_SESSION['id_user'] = $data['id_user'];
       $_SESSION['name'] = $data['nama'];
       
-      echo "<script>alert('Login berhasil!');window.location.href='index.php'</script>";  
+      echo "<script>alert('Login berhasil!');window.location.href='admin.php'</script>";  
 
     }
   //    else {

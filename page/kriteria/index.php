@@ -8,7 +8,7 @@
       $sql = "TRUNCATE TABLE nilai_kriteria";
       $query = mysqli_query($con, $sql);
       if ($query) 
-        echo "<script>alert('Data berhasil dihapus!');window.location.href='index.php?p=criteria'</script>";
+        echo "<script>alert('Data berhasil dihapus!');window.location.href='admin.php?p=criteria'</script>";
       else
         echo mysqli_error($con);
     } else {
@@ -45,10 +45,10 @@
             	 ?>
             	 <tr>
             	 	<td><?= $row['id_kriteria'] ?></td>
-            	 	<td><a href="index.php?p=criteria&act=show&id=<?= $row['id_kriteria'] ?>"><?= $row['kriteria'] ?></a></td>
+            	 	<td><a href="admin.php?p=criteria&act=show&id=<?= $row['id_kriteria'] ?>"><?= $row['kriteria'] ?></a></td>
                 <td>
-                  <a href="index.php?p=criteria&act=edit&id=<?= $row['id_kriteria'] ?>" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
-                  <a href="index.php?p=criteria&delete&id=<?= $row['id_kriteria'] ?>" class="btn btn-danger" onclick="return confirm('Jika data dihapus, maka data bobot kriteria akan direset?')"><i class="glyphicon glyphicon-trash"></i></a>
+                  <a href="admin.php?p=criteria&act=edit&id=<?= $row['id_kriteria'] ?>" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
+                  <a href="admin.php?p=criteria&delete&id=<?= $row['id_kriteria'] ?>" class="btn btn-danger" onclick="return confirm('Jika data dihapus, maka data bobot kriteria akan direset?')"><i class="glyphicon glyphicon-trash"></i></a>
                 
                 </td>
             	 </tr>

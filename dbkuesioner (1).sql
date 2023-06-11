@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 08 Jun 2023 pada 18.58
+-- Generation Time: 11 Jun 2023 pada 18.30
 -- Versi Server: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -69,7 +69,34 @@ INSERT INTO `jawaban` (`id_jawaban`, `id_pertanyaan`, `nama_jawaban`, `nilai_jaw
 (5, 2, 'SANGAT SETUJU', 4),
 (6, 2, ' SETUJU', 3),
 (7, 2, ' CUKUP SETUJU', 2),
-(8, 2, 'TIDAK SETUJU', 1);
+(8, 2, 'TIDAK SETUJU', 1),
+(9, 3, 'SANGAT SETUJU', 4),
+(10, 3, ' SETUJU', 3),
+(11, 3, ' CUKUP SETUJU', 2),
+(12, 3, 'TIDAK SETUJU', 1),
+(13, 4, 'SANGAT SETUJU', 4),
+(14, 4, ' SETUJU', 3),
+(15, 4, ' CUKUP SETUJU', 2),
+(16, 4, 'TIDAK SETUJU', 1),
+(17, 5, 'SANGAT SETUJU', 4),
+(18, 5, ' SETUJU', 3),
+(19, 5, ' CUKUP SETUJU', 2),
+(20, 5, 'TIDAK SETUJU', 1),
+(21, 6, 'SANGAT SETUJU', 4),
+(22, 6, ' SETUJU', 3),
+(23, 6, ' CUKUP SETUJU', 2),
+(24, 6, 'TIDAK SETUJU', 1),
+(25, 7, 'Kompetensi Akademik: Seorang dosen perlu menjaga dan mengembangkan kompetensi akademiknya agar tetap mengikuti perkembangan di bidangnya. Ini termasuk memperbarui pengetahuan dan keahlian mereka melalui studi, riset, dan partisipasi dalam kegiatan akademik.', 4),
+(26, 7, 'Kualitas Pengajaran: Dosen harus mempertahankan kualitas pengajaran yang baik. Ini mencakup penyampaian materi dengan cara yang jelas, metode pengajaran yang efektif, dan mampu memotivasi dan melibatkan mahasiswa dalam proses belajar-mengajar.', 4),
+(27, 7, 'Hubungan dengan Mahasiswa: Seorang dosen harus menjaga hubungan yang baik dengan mahasiswa. Ini melibatkan mendengarkan dan memahami kebutuhan serta masalah mahasiswa, memberikan bimbingan akademik, dan memberikan umpan balik yang konstruktif.', 4),
+(28, 7, 'Keberhasilan Mahasiswa: Dosen perlu mempertahankan fokus pada keberhasilan mahasiswa. Mereka harus melibatkan diri dalam membantu mahasiswa mencapai tujuan belajar mereka, memberikan panduan dan dukungan yang diperlukan, serta menilai kinerja mahasiswa secara adil dan obyektif.', 4),
+(29, 7, 'Etika Profesional: Dosen harus mempertahankan etika profesional yang tinggi. Ini termasuk integritas akademik, menghormati hak kebebasan akademik, menghindari plagiarisme, dan menghargai keragaman dan perspektif yang berbeda dalam kelas.', 4),
+(30, 8, 'Pengembangan Metode Pengajaran: Dosen dapat memperbaiki metode pengajaran mereka dengan mencari pendekatan baru dan inovatif yang dapat meningkatkan keterlibatan dan pemahaman mahasiswa. Ini termasuk penggunaan teknologi dalam pembelajaran, penggunaan studi kasus, diskusi kelompok, atau pengalaman praktis di lapangan.', -4),
+(31, 8, 'Keterbukaan terhadap Umpan Balik: Dosen perlu menjadi lebih terbuka terhadap umpan balik dari mahasiswa mereka. Menerima masukan dan kritik konstruktif dari mahasiswa dapat membantu dosen memperbaiki kualitas pengajaran dan memahami kebutuhan individu mahasiswa.', -4),
+(32, 8, 'Komunikasi Efektif: Dosen dapat meningkatkan komunikasi dengan mahasiswa dan rekan dosen. Ini mencakup kejelasan dalam menyampaikan instruksi, memberikan umpan balik yang konstruktif, dan memastikan ketersediaan untuk membantu mahasiswa ketika dibutuhkan.', -4),
+(33, 8, 'Ketersediaan dan Konsistensi: Dosen perlu meningkatkan ketersediaan mereka untuk mahasiswa, baik dalam hal waktu konsultasi maupun responsabilitas terhadap pertanyaan atau masalah mahasiswa. Selain itu, konsistensi dalam memberikan materi kuliah dan penilaian juga penting agar mahasiswa mendapatkan pengalaman belajar yang terstruktur dan seimbang', -4),
+(34, 8, 'Penerapan Prinsip Keadilan: Dosen perlu memastikan bahwa mereka menerapkan prinsip keadilan dalam menilai kinerja mahasiswa. Evaluasi yang adil dan obyektif akan memberikan motivasi yang sehat dan memberikan kesempatan yang sama bagi semua mahasiswa untuk berhasil.', -4),
+(35, 8, 'Kolaborasi dan Jaringan: Dosen dapat memperbaiki kolaborasi mereka dengan rekan dosen, mahasiswa, dan profesional lain di bidangnya. Membangun jaringan yang kuat akan membuka peluang untuk pertukaran pengetahuan, penelitian bersama, dan meningkatkan kualitas pengajaran.', -4);
 
 -- --------------------------------------------------------
 
@@ -99,6 +126,7 @@ CREATE TABLE `mahasiswa` (
   `id_mahasiswa` int(10) NOT NULL,
   `nama_mahasiswa` varchar(100) NOT NULL,
   `nim` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `email_mahasiswa` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -106,8 +134,9 @@ CREATE TABLE `mahasiswa` (
 -- Dumping data untuk tabel `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`id_mahasiswa`, `nama_mahasiswa`, `nim`, `email_mahasiswa`) VALUES
-(1, 'akabest', '2030409', 'akabest@gmail.com');
+INSERT INTO `mahasiswa` (`id_mahasiswa`, `nama_mahasiswa`, `nim`, `password`, `email_mahasiswa`) VALUES
+(1, 'JUMANTO', '10201032', '$2y$10$DL2NmZrJIaJUFcT5jzkVOuA1J642J8WiB5Tr9U6YcMBNq7ZGgzKuS', 'mardybest@gmail.com'),
+(2, 'aku', '10201033', '$2y$10$.6PGe2ixWTGkNlbg0i8XsO7AYpKhRbAg7/RNEYJwSkmEhC7t2gy4K', 'muhammad240807@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -152,9 +181,10 @@ CREATE TABLE `penilaian` (
   `id_mahasiswa` int(10) NOT NULL,
   `id_dosen` int(10) NOT NULL,
   `id_matakul` int(10) NOT NULL,
-  `nilai` int(1) DEFAULT NULL,
+  `nilai` text,
   `id_semester` int(10) NOT NULL,
-  `tahun` varchar(4) DEFAULT NULL
+  `tahun` varchar(4) DEFAULT NULL,
+  `jawaban_nilai` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -274,7 +304,7 @@ ALTER TABLE `dosen`
 -- AUTO_INCREMENT for table `jawaban`
 --
 ALTER TABLE `jawaban`
-  MODIFY `id_jawaban` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_jawaban` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `jurusan`
 --
@@ -284,7 +314,7 @@ ALTER TABLE `jurusan`
 -- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id_mahasiswa` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_mahasiswa` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `matakul`
 --
@@ -295,6 +325,11 @@ ALTER TABLE `matakul`
 --
 ALTER TABLE `pengajar`
   MODIFY `id_pengajar` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `penilaian`
+--
+ALTER TABLE `penilaian`
+  MODIFY `id_penilaian` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pertanyaan`
 --

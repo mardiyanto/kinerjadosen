@@ -25,7 +25,7 @@ if (isset($_GET['ta'])) {
     </div>
   <?php if (@$_SESSION['logged'] == 1): ?>
   <div class="col-xs-4 ">
-      <a href="index.php?p=TRUNCATE&ta=<?php echo $_GET[ta]; ?>" class="no-print btn btn-danger pull-right"><i class="fa fa-trash"></i> Reset Data</a>
+      <a href="admin.php?p=TRUNCATE&ta=<?php echo $_GET[ta]; ?>" class="no-print btn btn-danger pull-right"><i class="fa fa-trash"></i> Reset Data</a>
       <br>
       <br>
   </div>

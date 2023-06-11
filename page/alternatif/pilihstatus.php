@@ -2,7 +2,7 @@
 
   if (isset($_POST['simpan'])) {
 
-    echo "<script>window.location.href='index.php?p=alternatif&d=$_POST[status]'</script>";
+    echo "<script>window.location.href='admin.php?p=alternatif&d=$_POST[status]'</script>";
   }
 
  ?>

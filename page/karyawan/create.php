@@ -2,14 +2,14 @@
   error_reporting(0);
    // if ($_POST['Password']!=$_POST['CPassword']) {
    //     echo "<script>//alert('Password Berbeda, harap lakukan registrasi kembali');
-   //     window.location.href='index.php?p=karyawan&act=create&s=dm&nip=".$_POST[NIP]."&nama=".$_POST[karyawan]."&JK=".$_POST[JK]."&uname=".$_POST[username]."&jabatan=".$_POST[jabatan]."&uname=".$_POST[username]."'</script>";
+   //     window.location.href='admin.php?p=karyawan&act=create&s=dm&nip=".$_POST[NIP]."&nama=".$_POST[karyawan]."&JK=".$_POST[JK]."&uname=".$_POST[username]."&jabatan=".$_POST[jabatan]."&uname=".$_POST[username]."'</script>";
    //   }
    //   else{
       	if (isset($_POST['simpan'])) {
       		$sql = "insert into karyawan values('".$_POST[id_kar]."','".$_POST[NIP]."','".$_POST[karyawan]."', '".$_POST[JK]."','".$_POST[jabatan]."','na')";
       		$query = mysqli_query($con, $sql);
       		if ($query) {
-      			echo "<script>alert('Data berhasil ditambahkan!');window.location.href='index.php?p=karyawan'</script>";
+      			echo "<script>alert('Data berhasil ditambahkan!');window.location.href='admin.php?p=karyawan'</script>";
       		} else {
       			echo "Error : " . mysqli_error($con);
       		}

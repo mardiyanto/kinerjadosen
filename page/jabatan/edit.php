@@ -5,9 +5,9 @@
     $id=$_POST['id'];
     $update=mysqli_query($con,"UPDATE jabatan set nama_jabatan = '$NJ', job_desc='$JD' where id='$id'");
         if ($update) {
-      echo "<script>alert('Data ".$label." Berhasil Diubah!');window.location.href='index.php?p=jabatan'</script>";
+      echo "<script>alert('Data ".$label." Berhasil Diubah!');window.location.href='admin.php?p=jabatan'</script>";
         }else{
-      echo "<script>alert('Data ".$label." Gagal dieksekusi!');window.location.href='index.php?p=jabatan&act=edit&id=".$_GET['id']."'</script>";
+      echo "<script>alert('Data ".$label." Gagal dieksekusi!');window.location.href='admin.php?p=jabatan&act=edit&id=".$_GET['id']."'</script>";
         }
   }
 $edit=mysqli_query($con,"SELECT * from jabatan where id = '".$_GET['id']."'");

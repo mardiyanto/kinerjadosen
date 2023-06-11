@@ -79,6 +79,6 @@ else {$gagal++;}
 //echo "</pre>";
  
 }
-echo "<script>alert('Data yang berhasil di import : ".$sukses." dan Data yang gagal diimport : ".$gagal."');window.location.href='../../index.php?p=rank&ta=$period'</script>";
+echo "<script>alert('Data yang berhasil di import : ".$sukses." dan Data yang gagal diimport : ".$gagal."');window.location.href='../../admin.php?p=rank&ta=$period'</script>";
 //header('location: ../../index.php?p=fuzzy-upload');
 ?>

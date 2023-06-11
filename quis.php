@@ -1,8 +1,55 @@
-<?php
-// Koneksi ke database
-include 'config/connection.php';
-?>
+<?php 
 
+	@session_start();
+  error_reporting(0);
+	include 'config/connection.php';
+
+	// if (@$_SESSION['logged'] == false) {
+	// 	header('Location:login.php');
+	// }
+  if ($_SESSION['id_mahasiswa'] == null) {
+    echo "<script>alert('Harap login terlebih dahulu');window.location.href='login-msiswa.php'</script>";
+  }
+   // Menampilkan data pengguna yang sudah login
+$id_mahasiswa = $_SESSION['id_mahasiswa'];
+$nama_mahasiswa = $_SESSION['nama_mahasiswa'];
+$nim = $_SESSION['nim'];
+$email_mahasiswa = $_SESSION['email_mahasiswa'];   
+ ?>
+<?php
+  // Mendapatkan pertanyaan dari tabel pertanyaan
+  $query_pertanyaan = "SELECT * FROM pertanyaan WHERE status_pertanyaan = 'pilihan'";
+  $result_pertanyaan = mysqli_query($koneksi, $query_pertanyaan);
+  
+  // Memeriksa apakah form telah disubmit
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      // Memeriksa apakah nilai-nilai yang dibutuhkan telah ada
+      if (isset($_POST["id_mahasiswa"]) && isset($_POST["id_dosen"]) && isset($_POST["id_matakul"]) && isset($_POST["id_semester"]) && isset($_POST["tahun"])) {
+          $id_mahasiswa = $_POST["id_mahasiswa"];
+          $id_dosen = $_POST["id_dosen"];
+          $id_matakul = $_POST["id_matakul"];
+          $id_semester = $_POST["id_semester"];
+          $tahun = $_POST["tahun"];
+  
+          // Menyimpan penilaian ke dalam tabel penilaian
+          foreach ($_POST["jawaban"] as $id_pertanyaan => $jawaban) {
+              $query_jawaban = "SELECT nilai_jawaban FROM jawaban WHERE id_jawaban = '$jawaban'";
+              $result_jawaban = mysqli_query($koneksi, $query_jawaban);
+              $row_jawaban = mysqli_fetch_assoc($result_jawaban);
+              $nilai_jawaban = $row_jawaban["nilai_jawaban"];
+              
+              $query_simpan = "INSERT INTO penilaian (id_jawaban, id_mahasiswa, id_dosen, id_matakul, nilai, id_semester, tahun) VALUES ('$jawaban', '$id_mahasiswa', '$id_dosen', '$id_matakul', '$nilai_jawaban', '$id_semester', '$tahun')";
+              mysqli_query($koneksi, $query_simpan);
+          }
+  
+          // Redirect ke halaman sukses atau halaman lain yang diinginkan
+          header("Location: sukses.php?id_matakul=$_POST[id_matakul]&id_dosen=$_POST[id_dosen]&id_semester=$_POST[id_semester]&tahun=$_POST[tahun]");
+          exit();
+      } else {
+          echo "Form tidak lengkap!";
+      }
+  }
+  ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,64 +102,10 @@ include 'config/connection.php';
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
-
-
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="index.php" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini">GMI</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>E</b>-Kinerja</span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-        <span class="sr-only">Toggle navigation</span>
-      </a>
-
-      <div class="navbar-custom-menu">
-   
-      </div>
-    </nav>
-  </header>
+<body class="hold-transition skin-blue layout-top-nav">
+<?php include"atas.php"; ?>
   <!-- Left side column. contains the logo and sidebar -->
-<?php
-  // Mendapatkan pertanyaan dari tabel pertanyaan
-  $query_pertanyaan = "SELECT * FROM pertanyaan WHERE status_pertanyaan = 'pilihan'";
-  $result_pertanyaan = mysqli_query($koneksi, $query_pertanyaan);
-  
-  // Memeriksa apakah form telah disubmit
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      // Memeriksa apakah nilai-nilai yang dibutuhkan telah ada
-      if (isset($_POST["id_mahasiswa"]) && isset($_POST["id_dosen"]) && isset($_POST["id_matakul"]) && isset($_POST["id_semester"]) && isset($_POST["tahun"])) {
-          $id_mahasiswa = $_POST["id_mahasiswa"];
-          $id_dosen = $_POST["id_dosen"];
-          $id_matakul = $_POST["id_matakul"];
-          $id_semester = $_POST["id_semester"];
-          $tahun = $_POST["tahun"];
-  
-          // Menyimpan penilaian ke dalam tabel penilaian
-          foreach ($_POST["jawaban"] as $id_pertanyaan => $jawaban) {
-              $query_jawaban = "SELECT nilai_jawaban FROM jawaban WHERE id_jawaban = '$jawaban'";
-              $result_jawaban = mysqli_query($koneksi, $query_jawaban);
-              $row_jawaban = mysqli_fetch_assoc($result_jawaban);
-              $nilai_jawaban = $row_jawaban["nilai_jawaban"];
-              
-              $query_simpan = "INSERT INTO penilaian (id_jawaban, id_mahasiswa, id_dosen, id_matakul, nilai, id_semester, tahun) VALUES ('$jawaban', '$id_mahasiswa', '$id_dosen', '$id_matakul', '$nilai_jawaban', '$id_semester', '$tahun')";
-              mysqli_query($koneksi, $query_simpan);
-          }
-  
-          // Redirect ke halaman sukses atau halaman lain yang diinginkan
-          header("Location: sukses.php");
-          exit();
-      } else {
-          echo "Form tidak lengkap!";
-      }
-  }
-  ?>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content">
 
@@ -121,34 +114,55 @@ include 'config/connection.php';
     <section class="content">
 <div class='row'>
 <div class='col-lg-12'>
-    <div class='panel panel-default'>
-        <div class='panel-heading'>INFORMASI 
-        </div>     
+    <div class='panel panel-default'> 
 
  <div class="box box-warning">
               <div class="box-header with-border">
                   <h3 class="box-title">General Elements</h3>
                 </div><!-- /.box-header -->
-                <div class="box-body">
-                <div class="form-group">
-                      <label>Select</label>
-                      <select class="form-control">
-                        <option>option 1</option>
-                        <option>option 2</option>
-                        <option>option 3</option>
-                        <option>option 4</option>
-                        <option>option 5</option>
-                      </select>
-                    </div>
-              </div>
+               
  
     <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
         <!-- Input mahasiswa, dosen, matakul, semester, tahun -->
         <div class="box box-success">
-        <input type="text" name="id_mahasiswa" placeholder="ID Mahasiswa"><br>
-        <input type="text" name="id_dosen" placeholder="ID Dosen"><br>
-        <input type="text" name="id_matakul" placeholder="ID Mata Kuliah"><br>
-        <input type="text" name="id_semester" placeholder="ID Semester"><br>
+        <input type="text" name="id_mahasiswa" value='<?=$id_mahasiswa?>'><br>
+        <div class="box-body">
+                <div class="form-group">
+                <label>Pilih  Dosen</label>
+                <select class='form-control select2' style='width: 100%;' name="id_dosen">
+                                <option  selected>Pilih Dosen</option>"; 
+                               <?php  $sql=mysqli_query($koneksi,"SELECT * FROM dosen ORDER BY id_dosen");
+                                 while ($c=mysqli_fetch_array($sql))
+                                 {
+                                    echo "<option value=$c[id_dosen]>$c[nama_dosen]</option>";
+                                 } ?>
+                                </select>
+                    </div>
+             
+                <div class="form-group">
+                <label>Pilih  Mata Kuliah</label>
+                <select class='form-control select2' style='width: 100%;' name="id_matakul">
+                                <option  selected>Pilih Dosen</option>"; 
+                               <?php  $sql=mysqli_query($koneksi,"SELECT * FROM matakul ORDER BY id_matakul");
+                                 while ($c=mysqli_fetch_array($sql))
+                                 {
+                                    echo "<option value=$c[id_matakul]>$c[nama_matakul]</option>";
+                                 } ?>
+                                </select>
+                    </div>
+         
+                <div class="form-group">
+                <label>Pilih  Semester</label>
+                <select class='form-control select2' style='width: 100%;' name="id_semester">
+                                <option  selected>Pilih Dosen</option>"; 
+                               <?php  $sql=mysqli_query($koneksi,"SELECT * FROM semester ORDER BY id_semester");
+                                 while ($c=mysqli_fetch_array($sql))
+                                 {
+                                    echo "<option value=$c[id_semester]>$c[nama_semester]</option>";
+                                 } ?>
+                                </select>
+                    </div>
+              </div>
         <input type="text" name="tahun" placeholder="Tahun"><br>
 
         <!-- Pertanyaan dan pilihan jawaban -->

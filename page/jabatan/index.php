@@ -6,7 +6,7 @@
     $sql = "DELETE from jabatan where id='$id'";
     $query = mysqli_query($con, $sql);
     if ($query) {
-      echo "<script>alert('Data berhasil dihapus!');window.location.href='index.php?p=jabatan'</script>";
+      echo "<script>alert('Data berhasil dihapus!');window.location.href='admin.php?p=jabatan'</script>";
     } else {
       echo mysqli_error($con);
     }
@@ -49,8 +49,8 @@
             	 	<td width="40%"><?= $row['nama_jabatan'] ?></td>
                 <td><?= $str ?></td>
                 <td>
-                  <a href="index.php?p=jabatan&act=edit&id=<?= $row['id'] ?>" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
-                  <a href="index.php?p=jabatan&delete&id=<?= $row['id'] ?>" class="btn btn-danger" onclick="return confirm('Apakah data akan dihapus?')"><i class="glyphicon glyphicon-trash"></i></a>
+                  <a href="admin.php?p=jabatan&act=edit&id=<?= $row['id'] ?>" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
+                  <a href="admin.php?p=jabatan&delete&id=<?= $row['id'] ?>" class="btn btn-danger" onclick="return confirm('Apakah data akan dihapus?')"><i class="glyphicon glyphicon-trash"></i></a>
                 </td>
             	 </tr>
             	<?php endwhile; ?>

@@ -6,9 +6,9 @@ if (isset($_POST['simpan'])) {
     $seo=$tahun."-".$bulan;  
       $update=mysqli_query($con,"UPDATE periode set periode = '$seo', label='$label', tahun='$tahun', bulan='$bulan' where id_periode='".$_GET['id']."'");
         if ($update == TRUE) {
-          echo "<script>alert('Data ".$label." Berhasil Diubah!');window.location.href='index.php?p=periode'</script>";
+          echo "<script>alert('Data ".$label." Berhasil Diubah!');window.location.href='admin.php?p=periode'</script>";
         }else{
-          echo "<script>alert('Data ".$label." Gagal dieksekusi!');window.location.href='index.php?p=periode&act=edit&id=".$_GET['id']."'</script>";
+          echo "<script>alert('Data ".$label." Gagal dieksekusi!');window.location.href='admin.php?p=periode&act=edit&id=".$_GET['id']."'</script>";
         }
       
 

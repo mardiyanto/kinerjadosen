@@ -19,7 +19,7 @@
       mysqli_query($con, $sql);
     }
 
-    echo "<script>alert('Data berhasil ditambahkan!');window.location.href='index.php?p=bobot'</script>";
+    echo "<script>alert('Data berhasil ditambahkan!');window.location.href='admin.php?p=bobot'</script>";
   }
 
  ?>
