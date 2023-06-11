@@ -15,6 +15,7 @@ $id_mahasiswa = $_SESSION['id_mahasiswa'];
 $nama_mahasiswa = $_SESSION['nama_mahasiswa'];
 $nim = $_SESSION['nim'];
 $email_mahasiswa = $_SESSION['email_mahasiswa'];   
+$tahunSekarang = date("Y");
  ?>
 <?php
   // Mendapatkan pertanyaan dari tabel pertanyaan
@@ -125,7 +126,7 @@ $email_mahasiswa = $_SESSION['email_mahasiswa'];
     <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
         <!-- Input mahasiswa, dosen, matakul, semester, tahun -->
         <div class="box box-success">
-        <input type="text" name="id_mahasiswa" value='<?=$id_mahasiswa?>'><br>
+        <input type="hidden" name="id_mahasiswa" value='<?=$id_mahasiswa?>'><br>
         <div class="box-body">
                 <div class="form-group">
                 <label>Pilih  Dosen</label>
@@ -163,7 +164,7 @@ $email_mahasiswa = $_SESSION['email_mahasiswa'];
                                 </select>
                     </div>
               </div>
-        <input type="text" name="tahun" placeholder="Tahun"><br>
+        <input type="hidden" name="tahun" value="<?=$tahunSekarang?>"><br>
 
         <!-- Pertanyaan dan pilihan jawaban -->
         <?php while ($row_pertanyaan = mysqli_fetch_assoc($result_pertanyaan)) { ?>

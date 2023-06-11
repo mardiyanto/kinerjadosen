@@ -108,11 +108,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div><!-- /.box-header -->
                 <form method="POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
         <!-- Input mahasiswa, dosen, matakul, semester, tahun -->
-        <input type="text" name="id_mahasiswa" value='<?=$id_mahasiswa?>'><br>
-        <input type="text" name="id_dosen" value='<?=$id_dosen?>'><br>
-        <input type="text" name="id_matakul" value='<?=$id_matakul?>'><br>
-        <input type="text" name="id_semester" value='<?=$id_semester?>'><br>
-        <input type="text" name="tahun" value='<?=$tahun?>'><br>
+        <input type="hidden" name="id_mahasiswa" value='<?=$id_mahasiswa?>'>
+        <input type="hidden" name="id_dosen" value='<?=$id_dosen?>'>
+        <input type="hidden" name="id_matakul" value='<?=$id_matakul?>'>
+        <input type="hidden" name="id_semester" value='<?=$id_semester?>'>
+        <input type="hidden" name="tahun" value='<?=$tahun?>'>
         <!-- Pertanyaan dan pilihan jawaban -->
         <?php while ($row_pertanyaan = mysqli_fetch_assoc($result_pertanyaan)) { ?>
             <div class="box-header with-border">
