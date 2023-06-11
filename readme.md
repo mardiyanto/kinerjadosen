@@ -1,2 +1,2 @@
 #E-Kinerja
-Penilaian kinerja karyawan pada PT. Gadar Medik menggunakan Analitical Hierarchy Process (AHP)
+Penilaian kinerja DOSEN DAN karyawan pada IBN PRINGSEWU menggunakan Analitical Hierarchy Process (AHP)
