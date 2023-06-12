@@ -44,6 +44,8 @@
               <li><a href="proses.php?aksi=jurusan"><i class="fa fa-circle-o"></i> Data Jurusan</a></li>
               <li><a href="proses.php?aksi=semester"><i class="fa fa-circle-o"></i> Data Semester</a></li>
               <li><a href="proses.php?aksi=mahasiswa"><i class="fa fa-circle-o"></i> Data Mahasiswa</a></li>
+              <li><a href="proses.php?aksi=kelas"><i class="fa fa-circle-o"></i> Data Kelas</a></li>
+              <li><a href="proses.php?aksi=jadwal"><i class="fa fa-circle-o"></i> Data jadwal dosen</a></li>
             </ul>
           </li>
           <li class="treeview">

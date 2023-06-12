@@ -21,7 +21,6 @@ $tahunSekarang = date("Y");
   // Mendapatkan pertanyaan dari tabel pertanyaan
   $query_pertanyaan = "SELECT * FROM pertanyaan WHERE status_pertanyaan = 'pilihan'";
   $result_pertanyaan = mysqli_query($koneksi, $query_pertanyaan);
-  
   // Memeriksa apakah form telah disubmit
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
       // Memeriksa apakah nilai-nilai yang dibutuhkan telah ada
@@ -31,7 +30,14 @@ $tahunSekarang = date("Y");
           $id_matakul = $_POST["id_matakul"];
           $id_semester = $_POST["id_semester"];
           $tahun = $_POST["tahun"];
+      // Melakukan pengecekan inputan
+      $query_check = "SELECT * FROM penilaian WHERE id_mahasiswa = '$id_mahasiswa' AND id_dosen = '$id_dosen' AND id_matakul = '$id_matakul' AND id_semester = '$id_semester' AND tahun = '$tahun'";
+      $result_check = mysqli_query($koneksi, $query_check);
+      $num_rows = mysqli_num_rows($result_check);
   
+      if ($num_rows > 0) {
+        echo "<script>alert('Data sudah pernah diinput sebelumnya!');window.location.href='quis.php'</script>";
+      } else {
           // Menyimpan penilaian ke dalam tabel penilaian
           foreach ($_POST["jawaban"] as $id_pertanyaan => $jawaban) {
               $query_jawaban = "SELECT nilai_jawaban FROM jawaban WHERE id_jawaban = '$jawaban'";
@@ -42,12 +48,12 @@ $tahunSekarang = date("Y");
               $query_simpan = "INSERT INTO penilaian (id_jawaban, id_mahasiswa, id_dosen, id_matakul, nilai, id_semester, tahun) VALUES ('$jawaban', '$id_mahasiswa', '$id_dosen', '$id_matakul', '$nilai_jawaban', '$id_semester', '$tahun')";
               mysqli_query($koneksi, $query_simpan);
           }
-  
           // Redirect ke halaman sukses atau halaman lain yang diinginkan
           header("Location: sukses.php?id_matakul=$_POST[id_matakul]&id_dosen=$_POST[id_dosen]&id_semester=$_POST[id_semester]&tahun=$_POST[tahun]");
           exit();
+        } 
       } else {
-          echo "Form tidak lengkap!";
+        echo "<script>alert('data yang di isi kurang lengkap');window.location.href='quis.php'</script>";
       }
   }
   ?>
@@ -131,8 +137,10 @@ $tahunSekarang = date("Y");
                 <div class="form-group">
                 <label>Pilih  Dosen</label>
                 <select class='form-control select2' style='width: 100%;' name="id_dosen">
-                                <option  selected>Pilih Dosen</option>"; 
-                               <?php  $sql=mysqli_query($koneksi,"SELECT * FROM dosen ORDER BY id_dosen");
+                                <option  selected>Pilih Dosen</option>
+                               <?php  
+                              
+                               $sql=mysqli_query($koneksi,"SELECT * FROM dosen ORDER BY id_dosen");
                                  while ($c=mysqli_fetch_array($sql))
                                  {
                                     echo "<option value=$c[id_dosen]>$c[nama_dosen]</option>";
@@ -143,7 +151,7 @@ $tahunSekarang = date("Y");
                 <div class="form-group">
                 <label>Pilih  Mata Kuliah</label>
                 <select class='form-control select2' style='width: 100%;' name="id_matakul">
-                                <option  selected>Pilih Dosen</option>"; 
+                                <option  selected>Pilih Dosen</option>
                                <?php  $sql=mysqli_query($koneksi,"SELECT * FROM matakul ORDER BY id_matakul");
                                  while ($c=mysqli_fetch_array($sql))
                                  {
@@ -155,7 +163,7 @@ $tahunSekarang = date("Y");
                 <div class="form-group">
                 <label>Pilih  Semester</label>
                 <select class='form-control select2' style='width: 100%;' name="id_semester">
-                                <option  selected>Pilih Dosen</option>"; 
+                                <option  selected>Pilih Dosen</option> 
                                <?php  $sql=mysqli_query($koneksi,"SELECT * FROM semester ORDER BY id_semester");
                                  while ($c=mysqli_fetch_array($sql))
                                  {

@@ -20,7 +20,7 @@ if (isset($_POST['login'])) {
             $_SESSION['nama_mahasiswa'] = $row['nama_mahasiswa'];
             $_SESSION['nim'] = $row['nim'];
             $_SESSION['email_mahasiswa'] = $row['email_mahasiswa'];
-
+            $_SESSION['id_kelas'] = $row['id_kelas'];
             // Redirect ke halaman setelah login berhasil
             echo "<script>alert('login berhasil');window.location.href='index.php?aksi=home'</script>"; 
             exit();
@@ -36,20 +36,29 @@ if (isset($_POST['login'])) {
 
 // Proses reset password
 if (isset($_POST['reset_password'])) {
-    $nim = $_POST['nim'];
-    $new_password = $_POST['new_password'];
+  $nim = $_POST['nim'];
+  $new_password = $_POST['new_password'];
 
-    $hashedPassword = password_hash($new_password, PASSWORD_DEFAULT);
+  // Cek apakah NIM ditemukan dalam database
+  $query_check_nim = "SELECT * FROM mahasiswa WHERE nim = '$nim'";
+  $result_check_nim = mysqli_query($koneksi, $query_check_nim);
 
-    $query = "UPDATE mahasiswa SET password = '$hashedPassword' WHERE nim = '$nim'";
-    $result = mysqli_query($koneksi, $query);
+  if (mysqli_num_rows($result_check_nim) > 0) {
+      $hashedPassword = password_hash($new_password, PASSWORD_DEFAULT);
 
-    if ($result) {
-        echo "<script>alert('Reset password berhasil. Silakan login dengan password baru');window.location.href='login-msiswa.php'</script>";  
-    } else {
-        echo "<script>alert('Reset password gagal. Silakan coba lagi.');window.location.href='login-msiswa.php'</script>";
-    }
+      $query = "UPDATE mahasiswa SET password = '$hashedPassword' WHERE nim = '$nim'";
+      $result = mysqli_query($koneksi, $query);
+
+      if ($result) {
+          echo "<script>alert('Reset password berhasil. Silakan login dengan password baru');window.location.href='login-msiswa.php'</script>";
+      } else {
+          echo "<script>alert('Reset password gagal. Silakan coba lagi.');window.location.href='login-msiswa.php'</script>";
+      }
+  } else {
+      echo "<script>alert('NIM tidak ditemukan.');window.location.href='login-msiswa.php'</script>";
+  }
 }
+
 
 // Proses registrasi
 if (isset($_POST['register'])) {
@@ -57,7 +66,7 @@ if (isset($_POST['register'])) {
     $nim = $_POST['nim'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-
+    $kelas = $_POST['id_kelas'];
     // Cek apakah pengguna sudah terdaftar
     $query = "SELECT * FROM mahasiswa WHERE nim = '$nim'";
     $result = mysqli_query($koneksi, $query);
@@ -68,7 +77,7 @@ if (isset($_POST['register'])) {
         // Daftarkan pengguna baru
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        $query = "INSERT INTO mahasiswa (nama_mahasiswa, nim, email_mahasiswa, password) VALUES ('$nama', '$nim', '$email', '$hashedPassword')";
+        $query = "INSERT INTO mahasiswa (nama_mahasiswa, nim, email_mahasiswa,id_kelas, password) VALUES ('$nama', '$nim', '$email', '$kelas', '$hashedPassword')";
         $result = mysqli_query($koneksi, $query);
 
         if ($result) {
@@ -144,7 +153,20 @@ if (isset($_POST['register'])) {
                 <input type="email" class="form-control" id="email" name="email" required>
                   <label class="form-label" for="form3Example3">Email address</label>
                 </div>
-
+               <div class="form-outline mb-4">
+               <select class="form-control" name="id_kelas">
+  <option selected>Pilih kelas</option>
+  <?php  
+                              
+                              $sql=mysqli_query($koneksi,"SELECT * FROM kelas ORDER BY id_kelas");
+                                while ($c=mysqli_fetch_array($sql))
+                                {
+                                   echo "<option value=$c[id_kelas]>$c[nama_kelas]</option>";
+                                } ?>
+</select>
+              
+       
+                </div>
                 <!-- Password input -->
                 <div class="form-outline mb-4">
                 <input type="password" class="form-control" id="password_register" name="password" required>
