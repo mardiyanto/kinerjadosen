@@ -777,15 +777,16 @@ elseif($_GET['aksi']=='editjawaban'){
 }
 elseif($_GET['aksi']=='penilaian'){
     echo"
-    <div class='row'>
-     <div class='col-lg-12'>
-        <div class='panel panel-default'>
-            <div class='panel-heading'>
-            </div>
-            <div class='panel-body'>";
-           // Mendapatkan data penilaian berdasarkan id_dosen
-$query_penilaian = "SELECT id_dosen, COUNT(*) AS jumlah_penilaian, SUM(nilai) AS total_nilai, AVG(nilai) AS rata_nilai FROM penilaian GROUP BY id_dosen";
-$result_penilaian = mysqli_query($koneksi, $query_penilaian);
+    <div class='row'>";
+     // Mendapatkan data penilaian berdasarkan id_dosen
+     $query_penilaian = "SELECT penilaian.id_dosen, matakul.nama_matakul, dosen.nama_dosen, COUNT(*) AS jumlah_penilaian, SUM(penilaian.nilai) AS total_nilai, AVG(penilaian.nilai) AS rata_nilai 
+     FROM penilaian
+     JOIN matakul ON penilaian.id_matakul = matakul.id_matakul
+     JOIN dosen ON penilaian.id_dosen = dosen.id_dosen
+     JOIN jawaban ON penilaian.id_jawaban = jawaban.id_jawaban
+     JOIN mahasiswa ON penilaian.id_mahasiswa = mahasiswa.id_mahasiswa
+     GROUP BY penilaian.id_dosen";
+     $result_penilaian = mysqli_query($koneksi, $query_penilaian);
 
 // Menampilkan hasil perhitungan
 while ($row_penilaian = mysqli_fetch_assoc($result_penilaian)) {
@@ -799,12 +800,31 @@ while ($row_penilaian = mysqli_fetch_assoc($result_penilaian)) {
     echo "Total Nilai: $total_nilai<br>";
     echo "Rata-rata Nilai: $rata_nilai<br>";
     echo "<br>";
-}
-
-            echo"</div> 
+    echo"
+    <div class='col-md-4'>
+      <!-- Widget: user widget style 1 -->
+      <div class='box box-widget widget-user-2'>
+        <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class='widget-user-header bg-yellow'>
+          <div class='widget-user-image'>
+            <img class='img-circle' src='assets/img/user2-160x160.jpg' alt='User Avatar'>
+          </div><!-- /.widget-user-image -->
+          <h3 class='widget-user-username'>Nadia Carmichael</h3>
+          <h5 class='widget-user-desc'>Lead Developer</h5>
         </div>
-     </div>
-    </div>
+        <div class='box-footer no-padding'>
+          <ul class='nav nav-stacked'>
+            <li><a href='#'>Projects <span class='pull-right badge bg-blue'>31</span></a></li>
+            <li><a href='#'>Tasks <span class='pull-right badge bg-aqua'>5</span></a></li>
+            <li><a href='#'>Completed Projects <span class='pull-right badge bg-green'>12</span></a></li>
+            <li><a href='#'>Followers <span class='pull-right badge bg-red'>842</span></a></li>
+          </ul>
+        </div>
+      </div><!-- /.widget-user -->
+    </div><!-- /.col --> ";
+}
+echo"
+</div><!-- /.row -->
     ";
 }
 
