@@ -1192,5 +1192,101 @@ echo"
 </div><!-- /.row -->
     ";
 }
-
+elseif($_GET['aksi']=='ruangan'){
+    echo"<div class='row'>
+    <div class='col-lg-12'>
+        <div class='panel panel-default'>
+            <div class='panel-heading'>INFORMASI 
+            </div>
+            <div class='panel-body'>	
+    <button class='btn btn-info' data-toggle='modal' data-target='#uiModal'>
+                    Tambah Data
+                </button> </br>
+                   <div class='table-responsive'>		
+    <table id='example1' class='table table-bordered table-striped'>
+                        <thead>
+                            <tr> 
+                                <th>No</th>
+                                <th>Nama ruangan</th>	 
+                                 <th>AKSI</th>	
+                            </tr>
+                        </thead><tbody>
+        ";
+    
+    $no=0;
+    $sql=mysqli_query($koneksi," SELECT * FROM ruangan ORDER BY id_ruangan ASC");
+    while ($t=mysqli_fetch_array($sql)){	
+    $no++;
+                        echo"
+                            <tr><td>$no</td>
+                                <td>$t[nama_ruangan]</td> 
+                <td><div class='btn-group'>
+          <button type='button' class='btn btn-info'>AKSI</button>
+          <button type='button' class='btn btn-info dropdown-toggle' data-toggle='dropdown'>
+            <span class='caret'></span>
+            <span class='sr-only'>Toggle Dropdown</span>
+          </button>
+          <ul class='dropdown-menu' role='menu'>
+            <li><a href='proses.php?aksi=editruangan&id_ruangan=$t[id_ruangan]' title='Edit'><i class='fa fa-pencil'></i>edit</a></li>
+            <li><a href='hapus.php?aksi=hapusruangan&id_ruangan=$t[id_ruangan]' onclick=\"return confirm ('Apakah yakin ingin menghapus $t[nama_ruangan] ?')\" title='Hapus'><i class='fa fa-remove'></i>hapus</li>
+            </ul>
+        </div></td>
+                            </tr>";
+    }
+                    echo"
+                        </tbody></table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>";			
+    
+    ////////////////input 			
+    
+    echo"			
+    <div class='col-lg-12'>
+            <div class='modal fade' id='uiModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+                    <div class='modal-dialog'>
+                        <div class='modal-content'>
+                            <div class='modal-header'>
+                                <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+                                <h4 class='modal-title' id='H3'>Input Data</h4>
+                            </div>
+                            <div class='modal-body'>
+                               <form role='form' method='post' action='input.php?aksi=inputruangan'>
+                                <label>Nama ruangan</label>
+                                <input type='text' class='form-control' name='nama_ruangan'/><br>
+                                <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                                <button type='submit' class='btn btn-primary'>Save </button>
+                            </div>
+        </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>			
+    "; 
+}
+ /////////////////////////////////////////////////////////////////////////////////////////////////
+    
+elseif($_GET['aksi']=='editruangan'){
+    $tebaru=mysqli_query($koneksi," SELECT * FROM ruangan WHERE id_ruangan=$_GET[id_ruangan] ");
+    $t=mysqli_fetch_array($tebaru);
+    echo"
+    <div class='row'>
+    <div class='col-lg-12'>
+        <div class='panel panel-default'>
+            <div class='panel-heading'>EDIT  $t[nama_ruangan] $t[id_ruangan]
+            </div>
+            <div class='panel-body'>
+    <form id='form1'  method='post' action='edit.php?aksi=proseseditruangan&id_ruangan=$t[id_ruangan]'>
+    <label>Nama ruangan</label>
+    <input type='text' class='form-control' value='$t[nama_ruangan]' name='nama_ruangan'/><br>
+    <div class='modal-footer'>
+                                <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                                <button type='submit' class='btn btn-primary'>Save </button>
+                            </div> </div>
+    </form></div> </div></div></div>
+    ";
+}
 ?>

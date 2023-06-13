@@ -90,54 +90,16 @@ elseif($_GET['aksi']=='inputkelas'){
 	values ('$_POST[nama_kelas]')");  
 	echo "<script>window.location=('proses.php?aksi=kelas')</script>";
 }
-elseif($_GET['aksi']=='inputjadwal1s'){
+elseif($_GET['aksi']=='inputruangan'){
 	// Memeriksa apakah input kosong
-	if (isset($_POST['hari_jadwal'], $_POST['jam_mulai'], $_POST['jam_selesai'], $_POST['id_kelas'], $_POST['id_dosen'], $_POST['id_matakul'], $_POST['id_ruangan'], $_POST['id_semester'])) {
+	if (empty($_POST[nama_ruangan])) {
 		echo "<script>window.alert('Data yang Anda isikan belum lengkap');
-		window.location=('proses.php?aksi=jadwal')</script>";
+		window.location=('proses.php?aksi=ruangan')</script>";
 		exit();
 	}	
-	mysqli_query($koneksi,"insert into jadwal (hari_jadwal,jam_mulai,jam_selesai,id_kelas,id_dosen,id_matakul,id_ruangan,id_semester) 
-	values ('$_POST[hari_jadwal]','$_POST[jam_mulai]','$_POST[jam_selesai]','$_POST[id_kelas]','$_POST[id_dosen]','$_POST[id_matakul]','$_POST[id_ruangan]','$_POST[id_semester]')");  
-	echo "<script>window.location=('proses.php?aksi=jadwal')</script>";
-}
-elseif($_GET['aksi']=='inputjadwal2'){
-	// Memeriksa apakah input kosong
-	if (isset($_POST['hari_jadwal'], $_POST['jam_mulai'], $_POST['jam_selesai'], $_POST['id_kelas'], $_POST['id_dosen'], $_POST['id_matakul'], $_POST['id_ruangan'], $_POST['id_semester'])) {
-		// Lanjutkan dengan cek duplikasi input
-		$hari_jadwal = $_POST['hari_jadwal'];
-		$jam_mulai = $_POST['jam_mulai'];
-		$jam_selesai = $_POST['jam_selesai'];
-		$id_kelas = $_POST['id_kelas'];
-		$id_dosen = $_POST['id_dosen'];
-		$id_matakul = $_POST['id_matakul'];
-		$id_ruangan = $_POST['id_ruangan'];
-		$id_semester = $_POST['id_semester'];
-	
-		// Periksa duplikasi input
-		$query_check = "SELECT COUNT(*) AS total FROM jadwal WHERE hari_jadwal = '$hari_jadwal' AND jam_mulai = '$jam_mulai' AND jam_selesai = '$jam_selesai' AND id_kelas = '$id_kelas' AND id_dosen = '$id_dosen' AND id_matakul = '$id_matakul' AND id_ruangan = '$id_ruangan' AND id_semester = '$id_semester'";
-		$result_check = mysqli_query($koneksi, $query_check);
-		$row_check = mysqli_fetch_assoc($result_check);
-		$total_duplicates = $row_check['total'];
-	
-		if ($total_duplicates > 0) {
-			// Jika terdapat duplikasi input, tampilkan pesan kesalahan atau lakukan tindakan yang sesuai
-			echo "<script>window.alert('jadwal yang Anda buat dupikasi atau ganda perikasa lagi');
-			window.location=('proses.php?aksi=jadwal')</script>";
-			exit();
-		} else {
-			// Jika tidak ada duplikasi, lanjutkan dengan query insert
-			$query_insert = "INSERT INTO jadwal (hari_jadwal, jam_mulai, jam_selesai, id_kelas, id_dosen, id_matakul, id_ruangan, id_semester) VALUES ('$hari_jadwal', '$jam_mulai', '$jam_selesai', '$id_kelas', '$id_dosen', '$id_matakul', '$id_ruangan', '$id_semester')";
-			mysqli_query($koneksi, $query_insert);
-		}
-		echo "<script>window.alert('data ok');
-		window.location=('proses.php?aksi=jadwal')</script>";
-	} else {
-		// Jika input tidak lengkap, tampilkan pesan kesalahan atau lakukan tindakan yang sesuai
-		echo "<script>window.alert('Data yang Anda isikan belum lengkap');
-		window.location=('proses.php?aksi=jadwal')</script>";
-		exit();
-	}
+	mysqli_query($koneksi,"insert into ruangan (nama_ruangan) 
+	values ('$_POST[nama_ruangan]')");  
+	echo "<script>window.location=('proses.php?aksi=ruangan')</script>";
 }
 elseif($_GET['aksi']=='inputjadwal'){
 // Mendapatkan data input

@@ -46,6 +46,11 @@ elseif($_GET['aksi']=='proseseditkelas'){
 	echo "<script>window.alert('Data Berhasil di edit dan disimpan');
 	window.location=('proses.php?aksi=kelas')</script>";
 }
+elseif($_GET['aksi']=='proseseditruangan'){
+	mysqli_query($koneksi,"UPDATE ruangan SET nama_ruangan='$_POST[nama_ruangan]' WHERE id_ruangan='$_GET[id_ruangan]'");
+	echo "<script>window.alert('Data Berhasil di edit dan disimpan');
+	window.location=('proses.php?aksi=ruangan')</script>";
+}
 elseif($_GET['aksi']=='proseseditjadwal'){
 	$hari_jadwal = $_POST['hari_jadwal'];
     $jam_mulai = $_POST['jam_mulai'];
