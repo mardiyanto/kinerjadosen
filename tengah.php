@@ -23,6 +23,39 @@ if($_GET['aksi']=='home'){
     ";
 }
 
-elseif($_GET['aksi']=='test'){ 
+elseif($_GET['aksi']=='jadwal'){ 
+    echo"  <div class='row'>
+    <div class='col-lg-12'>";
+    $no=0;
+    $sql=mysqli_query($koneksi," SELECT * FROM jadwal,matakul,dosen,kelas,semester,ruangan WHERE jadwal.id_dosen=dosen.id_dosen 
+    and jadwal.id_matakul=matakul.id_matakul and jadwal.id_kelas=kelas.id_kelas and jadwal.id_semester=semester.id_semester 
+    and jadwal.id_ruangan=ruangan.id_ruangan ORDER BY jadwal.id_jadwal ASC");
+    while ($t=mysqli_fetch_array($sql)){	
+    $no++;
+    echo"
+    <div class='col-md-4'>
+      <!-- Widget: user widget style 1 -->
+      <div class='box box-widget widget-user-2'>
+        <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class='widget-user-header bg-yellow'>
+          <div class='widget-user-image'>
+            <img class='img-circle' src='assets/img/user2-160x160.jpg' alt='User Avatar'>
+          </div><!-- /.widget-user-image -->
+          <h3 class='widget-user-username'>$t[nama_dosen]</h3>
+          <h5 class='widget-user-desc'>Matakuliah : $t[nama_matakul]</h5>
+        </div>
+        <div class='box-footer no-padding'>
+          <ul class='nav nav-stacked'>
+            <li><a href='#'>Ruangan<span class='pull-right badge bg-blue'>$t[nama_ruangan]</span></a></li>
+            <li><a href='#'>Hari & Jam <span class='pull-right badge bg-aqua'>$t[hari_jadwal] $t[jam_mulai]-$t[jam_selesai]</span></a></li>
+            <li><a href='#'>Semester <span class='pull-right badge bg-red'>$t[nama_semester] $t[tahun_semester]</span></a></li>
+            <li><a href='#'>Kelas <span class='pull-right badge bg-green'>$t[nama_kelas]</span></a></li>
+          </ul>
+        </div>
+      </div><!-- /.widget-user -->
+    </div><!-- /.col --> ";
+        }
+    echo" </div>
+    </div>";
 }
 ?>
