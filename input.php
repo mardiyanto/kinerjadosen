@@ -102,6 +102,29 @@ elseif($_GET['aksi']=='inputruangan'){
 	echo "<script>window.location=('proses.php?aksi=ruangan')</script>";
 }
 elseif($_GET['aksi']=='inputjadwal'){
+	// Mendapatkan data input
+	$hari_jadwal = $_POST['hari_jadwal'];
+	$jam_mulai = $_POST['jam_mulai'];
+	$jam_selesai = $_POST['jam_selesai'];
+	$id_kelas = $_POST['id_kelas'];
+	$id_dosen = $_POST['id_dosen'];
+	$id_matakul = $_POST['id_matakul'];
+	$id_ruangan = $_POST['id_ruangan'];
+	$id_semester = $_POST['id_semester'];
+// Jika semua validasi berhasil, lakukan proses insert data
+$query_insert = "INSERT INTO jadwal (hari_jadwal, jam_mulai, jam_selesai, id_kelas, id_dosen, id_matakul, id_ruangan, id_semester) 
+VALUES ('$hari_jadwal', '$jam_mulai', '$jam_selesai', '$id_kelas', '$id_dosen', '$id_matakul', '$id_ruangan', '$id_semester')";
+
+if (mysqli_query($koneksi, $query_insert)) {
+echo "<script>window.alert('Data jadwal berhasil disimpan.');
+window.location=('proses.php?aksi=jadwal')</script>";
+} else {
+echo "<script>window.alert('Gagal menyimpan data jadwal.');
+window.location=('proses.php?aksi=jadwal')</script>";
+}
+}
+
+elseif($_GET['aksi']=='inputjadwal1'){
 // Mendapatkan data input
 $hari_jadwal = $_POST['hari_jadwal'];
 $jam_mulai = $_POST['jam_mulai'];

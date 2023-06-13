@@ -873,17 +873,7 @@ elseif($_GET['aksi']=='editkelas'){
     ";
 }
 elseif($_GET['aksi']=='jadwal'){
-    $days = array('Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu');
-    $hours = array();
-    for ($hour = 0; $hour < 12; $hour++) {
-        $formattedHour = str_pad($hour, 2, '0', STR_PAD_LEFT);
-        $hours[] = $formattedHour . ':00 AM';
-    }
-    
-    for ($hour = 1; $hour <= 12; $hour++) {
-        $formattedHour = str_pad($hour, 2, '0', STR_PAD_LEFT);
-        $hours[] = $formattedHour . ':00 PM';
-    }   
+    $days = array('Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu');  
     echo"<div class='row'>
     <div class='col-lg-12'>
         <div class='panel panel-default'>
@@ -957,7 +947,8 @@ elseif($_GET['aksi']=='jadwal'){
                             </div>
                             <div class='modal-body'>
                                <form role='form' method='post' action='input.php?aksi=inputjadwal'>
-
+                         
+                           </select>
                                 <label>Pilih  Hari</label>
                                 <select class='form-control select2' style='width: 100%;' name='hari_jadwal'>
                                                 <option  selected>Pilih hari</option>";
@@ -968,16 +959,46 @@ elseif($_GET['aksi']=='jadwal'){
                                  <label>Pilih  Jam mulai</label>
                                  <select class='form-control select2' style='width: 100%;' name='jam_mulai'>
                                                  <option  selected>Pilih jam</option>";
-                                                 foreach ($hours as $hour) {
-                                                     echo "<option value=$hour>$hour</option>";
-                                                  } 
+                                                  // Menetapkan zona waktu
+                               date_default_timezone_set('Asia/Jakarta');
+                           
+                               // Mengatur batas waktu looping
+                               $batas_waktu = strtotime('23:59:00'); // Batas waktu jam (23:59:00)
+                           
+                               // Melakukan looping jam
+                               $jam = strtotime('00:00:00'); // Jam awal (00:00:00)
+                               while ($jam <= $batas_waktu) {
+                                   // Mendapatkan jam saat ini dalam format 24 jam
+                                   $jam_format = date('H:i', $jam);
+                           
+                                   // Menampilkan opsi jam pada dropdown/select box
+                                   echo "<option value=\"$jam_format\">$jam_format</option>";
+                           
+                                   // Menambahkan 1 jam pada waktu saat ini
+                                   $jam = strtotime('+1 hour', $jam);
+                               }
                                   echo" </select><br>
                                   <label>Pilih  Jam Selesai</label>
                                   <select class='form-control select2' style='width: 100%;' name='jam_selesai'>
                                                   <option  selected>Pilih jam</option>";
-                                                  foreach ($hours as $hour) {
-                                                      echo "<option value=$hour>$hour</option>";
-                                                   } 
+                                                  // Menetapkan zona waktu
+                               date_default_timezone_set('Asia/Jakarta');
+                           
+                               // Mengatur batas waktu looping
+                               $batas_waktu = strtotime('23:59:00'); // Batas waktu jam (23:59:00)
+                           
+                               // Melakukan looping jam
+                               $jam = strtotime('00:00:00'); // Jam awal (00:00:00)
+                               while ($jam <= $batas_waktu) {
+                                   // Mendapatkan jam saat ini dalam format 24 jam
+                                   $jam_format = date('H:i', $jam);
+                           
+                                   // Menampilkan opsi jam pada dropdown/select box
+                                   echo "<option value=\"$jam_format\">$jam_format</option>";
+                           
+                                   // Menambahkan 1 jam pada waktu saat ini
+                                   $jam = strtotime('+1 hour', $jam);
+                               }
                                    echo" </select><br>
                                 <label>Pilih  Kelas</label>
                                 <select class='form-control select2' style='width: 100%;' name='id_kelas'>
@@ -1043,16 +1064,6 @@ elseif($_GET['aksi']=='jadwal'){
     
 elseif($_GET['aksi']=='editjadwal'){
     $days = array('Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu');
-    $hours = array();
-    for ($hour = 0; $hour < 12; $hour++) {
-        $formattedHour = str_pad($hour, 2, '0', STR_PAD_LEFT);
-        $hours[] = $formattedHour . ':00 AM';
-    }
-    
-    for ($hour = 1; $hour <= 12; $hour++) {
-        $formattedHour = str_pad($hour, 2, '0', STR_PAD_LEFT);
-        $hours[] = $formattedHour . ':00 PM';
-    }
     $tebaru=mysqli_query($koneksi," SELECT * FROM jadwal,matakul,dosen,kelas,semester,ruangan WHERE jadwal.id_dosen=dosen.id_dosen 
     and jadwal.id_matakul=matakul.id_matakul and jadwal.id_kelas=kelas.id_kelas and jadwal.id_semester=semester.id_semester 
     and jadwal.id_ruangan=ruangan.id_ruangan and  jadwal.id_jadwal=$_GET[id_jadwal]");
@@ -1075,16 +1086,46 @@ elseif($_GET['aksi']=='editjadwal'){
      <label>Pilih  Jam mulai</label>
      <select class='form-control select2' style='width: 100%;' name='jam_mulai'>
      <option  value='$t[jam_mulai]' selected>$t[jam_mulai]</option>";
-                     foreach ($hours as $hour) {
-                         echo "<option value=$hour>$hour</option>";
-                      } 
+                       // Menetapkan zona waktu
+                       date_default_timezone_set('Asia/Jakarta');
+                           
+                       // Mengatur batas waktu looping
+                       $batas_waktu = strtotime('23:59:00'); // Batas waktu jam (23:59:00)
+                   
+                       // Melakukan looping jam
+                       $jam = strtotime('00:00:00'); // Jam awal (00:00:00)
+                       while ($jam <= $batas_waktu) {
+                           // Mendapatkan jam saat ini dalam format 24 jam
+                           $jam_format = date('H:i', $jam);
+                   
+                           // Menampilkan opsi jam pada dropdown/select box
+                           echo "<option value=\"$jam_format\">$jam_format</option>";
+                   
+                           // Menambahkan 1 jam pada waktu saat ini
+                           $jam = strtotime('+1 hour', $jam);
+                       }
       echo" </select><br>
       <label>Pilih  Jam Selesai</label>
       <select class='form-control select2' style='width: 100%;' name='jam_selesai'>
       <option  value='$t[jam_selesai]' selected>$t[jam_selesai]</option>";
-                      foreach ($hours as $hour) {
-                          echo "<option value=$hour>$hour</option>";
-                       } 
+                        // Menetapkan zona waktu
+                        date_default_timezone_set('Asia/Jakarta');
+                           
+                        // Mengatur batas waktu looping
+                        $batas_waktu = strtotime('23:59:00'); // Batas waktu jam (23:59:00)
+                    
+                        // Melakukan looping jam
+                        $jam = strtotime('00:00:00'); // Jam awal (00:00:00)
+                        while ($jam <= $batas_waktu) {
+                            // Mendapatkan jam saat ini dalam format 24 jam
+                            $jam_format = date('H:i', $jam);
+                    
+                            // Menampilkan opsi jam pada dropdown/select box
+                            echo "<option value=\"$jam_format\">$jam_format</option>";
+                    
+                            // Menambahkan 1 jam pada waktu saat ini
+                            $jam = strtotime('+1 hour', $jam);
+                        }
        echo" </select><br>
     <label>Pilih  Kelas</label>
     <select class='form-control select2' style='width: 100%;' name='id_kelas'>

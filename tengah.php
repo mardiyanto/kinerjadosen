@@ -24,12 +24,12 @@ if($_GET['aksi']=='home'){
 }
 
 elseif($_GET['aksi']=='jadwal'){ 
-    echo"  <div class='row'>
+   echo"  <div class='row'>
     <div class='col-lg-12'>";
-    $no=0;
-    $sql=mysqli_query($koneksi," SELECT * FROM jadwal,matakul,dosen,kelas,semester,ruangan WHERE jadwal.id_dosen=dosen.id_dosen 
-    and jadwal.id_matakul=matakul.id_matakul and jadwal.id_kelas=kelas.id_kelas and jadwal.id_semester=semester.id_semester 
-    and jadwal.id_ruangan=ruangan.id_ruangan ORDER BY jadwal.id_jadwal ASC");
+$no=0;
+$sql=mysqli_query($koneksi," SELECT * FROM jadwal,matakul,dosen,kelas,semester,ruangan WHERE jadwal.id_dosen=dosen.id_dosen 
+and jadwal.id_matakul=matakul.id_matakul and jadwal.id_kelas=kelas.id_kelas and jadwal.id_semester=semester.id_semester 
+and jadwal.id_ruangan=ruangan.id_ruangan and jadwal.id_kelas=$_SESSION[id_kelas] ORDER BY jadwal.id_jadwal ASC");
     while ($t=mysqli_fetch_array($sql)){	
     $no++;
     echo"
@@ -51,9 +51,11 @@ elseif($_GET['aksi']=='jadwal'){
             <li><a href='#'>Semester <span class='pull-right badge bg-red'>$t[nama_semester] $t[tahun_semester]</span></a></li>
             <li><a href='#'>Kelas <span class='pull-right badge bg-green'>$t[nama_kelas]</span></a></li>
           </ul>
+          <a href='quis.php?id_matakul=$t[id_matakul]&id_dosen=$t[id_dosen]&id_semester=$t[id_semester]' class='btn btn-primary btn-lg btn-block'>ISI KINERJA</a>
         </div>
       </div><!-- /.widget-user -->
-    </div><!-- /.col --> ";
+    </div><!-- /.col --> 
+    ";
         }
     echo" </div>
     </div>";

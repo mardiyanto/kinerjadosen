@@ -17,12 +17,8 @@ $nama_mahasiswa = $_SESSION['nama_mahasiswa'];
 $nim = $_SESSION['nim'];
 $email_mahasiswa = $_SESSION['email_mahasiswa'];   
 $tahunSekarang = date("Y");
-//medapatakn sesi sebelumya
-$id_dosen = $_GET["id_dosen"];
-$id_matakul = $_GET["id_matakul"];
-$id_semester = $_GET["id_semester"];
-
-
+ ?>
+<?php
   // Mendapatkan pertanyaan dari tabel pertanyaan
   $query_pertanyaan = "SELECT * FROM pertanyaan WHERE status_pertanyaan = 'pilihan'";
   $result_pertanyaan = mysqli_query($koneksi, $query_pertanyaan);
@@ -127,9 +123,10 @@ $id_semester = $_GET["id_semester"];
 <div class='row'>
 <div class='col-lg-12'>
     <div class='panel panel-default'> 
+
  <div class="box box-warning">
               <div class="box-header with-border">
-                  <h3 class="box-title">General Elements <?=$id_dosen?> <?=$id_matakul?> <?=$id_semester?> </h3>
+                  <h3 class="box-title">General Elements</h3>
                 </div><!-- /.box-header -->
                
  
@@ -137,9 +134,45 @@ $id_semester = $_GET["id_semester"];
         <!-- Input mahasiswa, dosen, matakul, semester, tahun -->
         <div class="box box-success">
         <input type="hidden" name="id_mahasiswa" value='<?=$id_mahasiswa?>'><br>
-        <input type="hidden" name="id_dosen" value='<?=$id_dosen?>'>
-        <input type="hidden" name="id_matakul" value='<?=$id_matakul?>'>
-        <input type="hidden" name="id_semester" value='<?=$id_semester?>'>
+        <div class="box-body">
+                <div class="form-group">
+                <label>Pilih  Dosen</label>
+                <select class='form-control select2' style='width: 100%;' name="id_dosen">
+                                <option  selected>Pilih Dosen</option>
+                               <?php  
+                              
+                               $sql=mysqli_query($koneksi,"SELECT * FROM dosen ORDER BY id_dosen");
+                                 while ($c=mysqli_fetch_array($sql))
+                                 {
+                                    echo "<option value=$c[id_dosen]>$c[nama_dosen]</option>";
+                                 } ?>
+                                </select>
+                    </div>
+             
+                <div class="form-group">
+                <label>Pilih  Mata Kuliah</label>
+                <select class='form-control select2' style='width: 100%;' name="id_matakul">
+                                <option  selected>Pilih Dosen</option>
+                               <?php  $sql=mysqli_query($koneksi,"SELECT * FROM matakul ORDER BY id_matakul");
+                                 while ($c=mysqli_fetch_array($sql))
+                                 {
+                                    echo "<option value=$c[id_matakul]>$c[nama_matakul]</option>";
+                                 } ?>
+                                </select>
+                    </div>
+         
+                <div class="form-group">
+                <label>Pilih  Semester</label>
+                <select class='form-control select2' style='width: 100%;' name="id_semester">
+                                <option  selected>Pilih Dosen</option> 
+                               <?php  $sql=mysqli_query($koneksi,"SELECT * FROM semester ORDER BY id_semester");
+                                 while ($c=mysqli_fetch_array($sql))
+                                 {
+                                    echo "<option value=$c[id_semester]>$c[nama_semester]</option>";
+                                 } ?>
+                                </select>
+                    </div>
+              </div>
         <input type="hidden" name="tahun" value="<?=$tahunSekarang?>"><br>
 
         <!-- Pertanyaan dan pilihan jawaban -->

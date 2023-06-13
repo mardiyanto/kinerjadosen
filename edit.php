@@ -4,6 +4,7 @@
 
 ///////////////////////////lihat/////////////////////////////////////////////
 if($_GET['aksi']=='proseseditdosen'){
+	mysqli_query($koneksi,"UPDATE dosen SET nama_dosen='$_POST[nama_dosen]',nidn='$_POST[nidn]',status_dos='$_POST[status_dos]' WHERE id_dosen='$_GET[id_dosen]'");	
 echo "<script>window.alert('Data Berhasil di edit dan disimpan');
 window.location=('proses.php?aksi=dosen')</script>";
 ///////////////////////////////////////////////////////////////////////////////////////////////////
