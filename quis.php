@@ -21,19 +21,22 @@ $tahunSekarang = date("Y");
 $id_dosen = $_GET["id_dosen"];
 $id_matakul = $_GET["id_matakul"];
 $id_semester = $_GET["id_semester"];
-
+$id_jadwal = $_GET["id_jadwal"];
 
   // Mendapatkan pertanyaan dari tabel pertanyaan
   $query_pertanyaan = "SELECT * FROM pertanyaan WHERE status_pertanyaan = 'pilihan'";
   $result_pertanyaan = mysqli_query($koneksi, $query_pertanyaan);
+ 
   // Memeriksa apakah form telah disubmit
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   
       // Memeriksa apakah nilai-nilai yang dibutuhkan telah ada
       if (isset($_POST["id_mahasiswa"]) && isset($_POST["id_dosen"]) && isset($_POST["id_matakul"]) && isset($_POST["id_semester"]) && isset($_POST["tahun"])) {
           $id_mahasiswa = $_POST["id_mahasiswa"];
           $id_dosen = $_POST["id_dosen"];
           $id_matakul = $_POST["id_matakul"];
           $id_semester = $_POST["id_semester"];
+
           $tahun = $_POST["tahun"];
       // Melakukan pengecekan inputan
       $query_check = "SELECT * FROM penilaian WHERE id_mahasiswa = '$id_mahasiswa' AND id_dosen = '$id_dosen' AND id_matakul = '$id_matakul' AND id_semester = '$id_semester' AND tahun = '$tahun'";
@@ -49,9 +52,10 @@ $id_semester = $_GET["id_semester"];
               $result_jawaban = mysqli_query($koneksi, $query_jawaban);
               $row_jawaban = mysqli_fetch_assoc($result_jawaban);
               $nilai_jawaban = $row_jawaban["nilai_jawaban"];
-              
               $query_simpan = "INSERT INTO penilaian (id_jawaban, id_mahasiswa, id_dosen, id_matakul, nilai, id_semester, tahun) VALUES ('$jawaban', '$id_mahasiswa', '$id_dosen', '$id_matakul', '$nilai_jawaban', '$id_semester', '$tahun')";
               mysqli_query($koneksi, $query_simpan);
+
+    
           }
           // Redirect ke halaman sukses atau halaman lain yang diinginkan
           header("Location: sukses.php?id_matakul=$_POST[id_matakul]&id_dosen=$_POST[id_dosen]&id_semester=$_POST[id_semester]&tahun=$_POST[tahun]");
@@ -129,7 +133,7 @@ $id_semester = $_GET["id_semester"];
     <div class='panel panel-default'> 
  <div class="box box-warning">
               <div class="box-header with-border">
-                  <h3 class="box-title">General Elements <?=$id_dosen?> <?=$id_matakul?> <?=$id_semester?> </h3>
+                  <h3 class="box-title">General Elements <?=$id_dosen?> <?=$id_matakul?> <?=$id_semester?> <?=$id_jadwal?></h3>
                 </div><!-- /.box-header -->
                
  
@@ -138,6 +142,7 @@ $id_semester = $_GET["id_semester"];
         <div class="box box-success">
         <input type="hidden" name="id_mahasiswa" value='<?=$id_mahasiswa?>'><br>
         <input type="hidden" name="id_dosen" value='<?=$id_dosen?>'>
+      
         <input type="hidden" name="id_matakul" value='<?=$id_matakul?>'>
         <input type="hidden" name="id_semester" value='<?=$id_semester?>'>
         <input type="hidden" name="tahun" value="<?=$tahunSekarang?>"><br>

@@ -112,8 +112,8 @@ elseif($_GET['aksi']=='inputjadwal'){
 	$id_ruangan = $_POST['id_ruangan'];
 	$id_semester = $_POST['id_semester'];
 // Jika semua validasi berhasil, lakukan proses insert data
-$query_insert = "INSERT INTO jadwal (hari_jadwal, jam_mulai, jam_selesai, id_kelas, id_dosen, id_matakul, id_ruangan, id_semester) 
-VALUES ('$hari_jadwal', '$jam_mulai', '$jam_selesai', '$id_kelas', '$id_dosen', '$id_matakul', '$id_ruangan', '$id_semester')";
+$query_insert = "INSERT INTO jadwal (hari_jadwal, jam_mulai, jam_selesai, id_kelas, id_dosen, id_matakul, id_ruangan, id_semester,status_quis) 
+VALUES ('$hari_jadwal', '$jam_mulai', '$jam_selesai', '$id_kelas', '$id_dosen', '$id_matakul', '$id_ruangan', '$id_semester', 'belum')";
 
 if (mysqli_query($koneksi, $query_insert)) {
 echo "<script>window.alert('Data jadwal berhasil disimpan.');
