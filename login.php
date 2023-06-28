@@ -77,10 +77,9 @@
 
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <div class="login-logo">
-    <!-- <a href="../../index2.html"><b>Fuzzy</b>AHP</a> -->
-    <img src="assets/img/logo.jpeg" width="300px">
-  </div>
+  <div class="login-logo">
+        <a href=""><b>E-KINERJA</b> DOSEN</a>
+      </div><!-- /.login-logo -->
     <p class="login-box-msg">Sign in to start your session</p>
 
     <form method="post">
