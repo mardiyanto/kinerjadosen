@@ -21,14 +21,14 @@
           </li>
           <li class="treeview <?= (@$_GET['p']=='karyawan')?'active':'' ?>">
             <a href="#">
-              <i class="fa fa-user-secret"></i> <span>Karyawan</span>
+              <i class="fa fa-user-secret"></i> <span>dosen</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="admin.php?p=karyawan&act=create"><i class="fa fa-circle-o"></i> Tambah data Karyawan </a></li>
-              <li><a href="admin.php?p=karyawan"><i class="fa fa-circle-o"></i> Data Karyawan</a></li>
+              <li><a href="admin.php?p=karyawan&act=create"><i class="fa fa-circle-o"></i> Tambah data dosen </a></li>
+              <li><a href="admin.php?p=karyawan"><i class="fa fa-circle-o"></i> Data dosen</a></li>
             </ul>
           </li>
           <li class="treeview">

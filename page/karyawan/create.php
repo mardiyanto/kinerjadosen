@@ -34,7 +34,7 @@
       <!-- general form elements -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Form karyawan</h3>
+          <h3 class="box-title">Form dosen</h3>
           
         </div>
         <?php if($_GET['s']=="dm"){ echo "<div class='dm'>Password berbeda, coba lagi</div>";}else{echo"";}?>
@@ -47,8 +47,8 @@
               <input type="text" class="form-control input-lg" id="exampleInputEmail1" placeholder="Masukan NIP" name="NIP" <?php if (isset($_GET['nip'])) { echo "value='".$_GET['nip']."'";}else{echo "";} ?> required>
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Nama karyawan</label>
-              <input type="text" class="form-control input-lg" id="exampleInputEmail1" placeholder="Masukan Nama karyawan" name="karyawan" <?php if (isset($_GET['nama'])) { echo "value='".$_GET['nama']."'";}else{echo "";} ?> required>
+              <label for="exampleInputEmail1">Nama dosen</label>
+              <input type="text" class="form-control input-lg" id="exampleInputEmail1" placeholder="Masukan Nama dosen" name="karyawan" <?php if (isset($_GET['nama'])) { echo "value='".$_GET['nama']."'";}else{echo "";} ?> required>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Jenis Kelamin</label>

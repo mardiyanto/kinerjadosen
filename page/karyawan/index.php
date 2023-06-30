@@ -18,7 +18,7 @@
 
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Data karyawan </h3><h3 class="box-title pull-right"><a href="?p=karyawan&act=create" class="btn btn-success"><i class="fa fa-user"></i> Tambah Data karyawan</a></h3>
+          <h3 class="box-title">Data dosen </h3><h3 class="box-title pull-right"><a href="?p=karyawan&act=create" class="btn btn-success"><i class="fa fa-user"></i> Tambah Data dosen</a></h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -26,7 +26,7 @@
             <thead>
             <tr>
               <th>NIP/NIND</th>
-              <th>Nama karyawan</th>
+              <th>Nama dosen</th>
               <th>Jabatan</th>
 
               <th>Aksi</th>
@@ -53,7 +53,7 @@
             </tbody>
             <tfoot>
             <tr>
-              <th colspan="3">Index karyawan May Various</th>
+              <th colspan="3">Index dosen May Various</th>
             </tr>
             </tfoot>
           </table>

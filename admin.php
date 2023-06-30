@@ -78,7 +78,7 @@
     <!-- Logo -->
     <a href="index.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini">GMI</span>
+      <span class="logo-mini">IKD</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>E</b>-Kinerja</span>
     </a>
@@ -93,7 +93,7 @@
         <ul class="nav navbar-nav">
           
           <?php if (@$_SESSION['logged'] == 1): ?>
-            <li><a class="dropdown-item" href="?p=karyawan">Data Karyawan</a></li>
+            <li><a class="dropdown-item" href="?p=karyawan">Data dosen</a></li>
           <!-- <li><a class="dropdown-item" href="?p=alternatif">Penilaian karyawan</a></li> -->
          <!--  <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu">
@@ -120,7 +120,7 @@
           </li>
           <?php endif ?>
           <?php if (@$_SESSION['logged'] == 2 || @$_SESSION['logged'] == 1): ?>
-          <li><a class="dropdown-item" href="?p=alternatif">Penilaian karyawan</a></li>
+          <li><a class="dropdown-item" href="?p=alternatif">Penilaian dosen</a></li>
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu">
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN9igcyo_jp2dYcTSY3qY-o-CY7u4Unb3yWtDJjS5Udj0uBswAZg" class="user-image" alt="User Image">
