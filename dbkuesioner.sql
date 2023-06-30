@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 12 Jun 2023 pada 19.16
+-- Generation Time: 30 Jun 2023 pada 02.21
 -- Versi Server: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -35,15 +35,6 @@ CREATE TABLE `dosen` (
   `status_dos` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `dosen`
---
-
-INSERT INTO `dosen` (`id_dosen`, `nama_dosen`, `nidn`, `status_dos`) VALUES
-(1, 'MARDIYANTO,M.T.I', '0206109101', 'pengajar'),
-(2, 'WIDIANTO', '0206109102', 'tetap'),
-(3, 'JUMANTO', '0206109103', 'pengajar');
-
 -- --------------------------------------------------------
 
 --
@@ -59,17 +50,9 @@ CREATE TABLE `jadwal` (
   `id_ruangan` int(10) NOT NULL,
   `jam_mulai` varchar(10) NOT NULL,
   `jam_selesai` varchar(10) NOT NULL,
-  `hari_jadwal` varchar(100) NOT NULL
+  `hari_jadwal` varchar(100) NOT NULL,
+  `status_quis` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `jadwal`
---
-
-INSERT INTO `jadwal` (`id_jadwal`, `id_dosen`, `id_matakul`, `id_semester`, `id_kelas`, `id_ruangan`, `jam_mulai`, `jam_selesai`, `hari_jadwal`) VALUES
-(1, 1, 1, 1, 1, 1, '08:00', '10:00', 'Senin'),
-(2, 1, 1, 1, 1, 2, '08:00', '10:00', 'Senin'),
-(3, 2, 2, 1, 2, 1, '08:00', '10:00', 'Selasa');
 
 -- --------------------------------------------------------
 
@@ -136,13 +119,6 @@ CREATE TABLE `jurusan` (
   `nama_jur` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `jurusan`
---
-
-INSERT INTO `jurusan` (`id_jur`, `nama_jur`) VALUES
-(1, 'SISTEM INFORMASI');
-
 -- --------------------------------------------------------
 
 --
@@ -153,14 +129,6 @@ CREATE TABLE `kelas` (
   `id_kelas` int(10) NOT NULL,
   `nama_kelas` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `kelas`
---
-
-INSERT INTO `kelas` (`id_kelas`, `nama_kelas`) VALUES
-(1, 'MOZILA 1'),
-(2, 'MOZILA 2');
 
 -- --------------------------------------------------------
 
@@ -177,15 +145,6 @@ CREATE TABLE `mahasiswa` (
   `email_mahasiswa` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `mahasiswa`
---
-
-INSERT INTO `mahasiswa` (`id_mahasiswa`, `id_kelas`, `nama_mahasiswa`, `nim`, `password`, `email_mahasiswa`) VALUES
-(1, 0, 'JUMANTO', '10201032', '$2y$10$DL2NmZrJIaJUFcT5jzkVOuA1J642J8WiB5Tr9U6YcMBNq7ZGgzKuS', 'mardybest@gmail.com'),
-(2, 0, 'aku', '10201033', '$2y$10$.6PGe2ixWTGkNlbg0i8XsO7AYpKhRbAg7/RNEYJwSkmEhC7t2gy4K', 'muhammad240807@gmail.com'),
-(3, 1, 'mardi', '10201034', '$2y$10$UoBwLfXdmrWNbDAoi4lRX.RNwqaYqwXAcU7KiNG0KnEzcTdPGH6sC', 'mardybest@gmail.com');
-
 -- --------------------------------------------------------
 
 --
@@ -196,14 +155,6 @@ CREATE TABLE `matakul` (
   `id_matakul` int(10) NOT NULL,
   `nama_matakul` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `matakul`
---
-
-INSERT INTO `matakul` (`id_matakul`, `nama_matakul`) VALUES
-(1, 'JARINGAN KOMPUTER'),
-(2, 'PEMEROGRAMAN WEB 2');
 
 -- --------------------------------------------------------
 
@@ -222,48 +173,6 @@ CREATE TABLE `penilaian` (
   `tahun` varchar(4) DEFAULT NULL,
   `jawaban_nilai` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data untuk tabel `penilaian`
---
-
-INSERT INTO `penilaian` (`id_penilaian`, `id_jawaban`, `id_mahasiswa`, `id_dosen`, `id_matakul`, `nilai`, `id_semester`, `tahun`, `jawaban_nilai`) VALUES
-(1, 1, 1, 1, 1, '4', 1, '2023', ''),
-(2, 5, 1, 1, 1, '4', 1, '2023', ''),
-(3, 9, 1, 1, 1, '4', 1, '2023', ''),
-(4, 13, 1, 1, 1, '4', 1, '2023', ''),
-(5, 17, 1, 1, 1, '4', 1, '2023', ''),
-(6, 21, 1, 1, 1, '4', 1, '2023', ''),
-(7, 27, 1, 1, 1, '4', 1, '2023', ''),
-(8, 28, 1, 1, 1, '4', 1, '2023', ''),
-(9, 30, 1, 1, 1, '-4', 1, '2023', ''),
-(10, 31, 1, 1, 1, '-4', 1, '2023', ''),
-(11, 32, 1, 1, 1, '-4', 1, '2023', ''),
-(12, 33, 1, 1, 1, '-4', 1, '2023', ''),
-(13, 34, 1, 1, 1, '-4', 1, '2023', ''),
-(14, 35, 1, 1, 1, '-4', 1, '2023', ''),
-(15, 1, 1, 1, 2, '4', 1, '2023', ''),
-(16, 5, 1, 1, 2, '4', 1, '2023', ''),
-(17, 9, 1, 1, 2, '4', 1, '2023', ''),
-(18, 13, 1, 1, 2, '4', 1, '2023', ''),
-(19, 17, 1, 1, 2, '4', 1, '2023', ''),
-(20, 21, 1, 1, 2, '4', 1, '2023', ''),
-(21, 25, 1, 1, 2, '4', 1, '2023', ''),
-(22, 35, 1, 1, 2, '-4', 1, '2023', ''),
-(23, 1, 1, 2, 1, '4', 1, '2023', ''),
-(24, 5, 1, 2, 1, '4', 1, '2023', ''),
-(25, 9, 1, 2, 1, '4', 1, '2023', ''),
-(26, 13, 1, 2, 1, '4', 1, '2023', ''),
-(27, 17, 1, 2, 1, '4', 1, '2023', ''),
-(28, 21, 1, 2, 1, '4', 1, '2023', ''),
-(29, 25, 1, 2, 1, '4', 1, '2023', ''),
-(30, 1, 2, 1, 1, '4', 1, '2023', ''),
-(31, 5, 2, 1, 1, '4', 1, '2023', ''),
-(32, 9, 2, 1, 1, '4', 1, '2023', ''),
-(33, 13, 2, 1, 1, '4', 1, '2023', ''),
-(34, 17, 2, 1, 1, '4', 1, '2023', ''),
-(35, 21, 2, 1, 1, '4', 1, '2023', ''),
-(36, 25, 2, 1, 1, '4', 1, '2023', '');
 
 -- --------------------------------------------------------
 
@@ -302,14 +211,6 @@ CREATE TABLE `ruangan` (
   `nama_ruangan` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `ruangan`
---
-
-INSERT INTO `ruangan` (`id_ruangan`, `nama_ruangan`) VALUES
-(1, 'LAB GOOGLE '),
-(2, 'VIP');
-
 -- --------------------------------------------------------
 
 --
@@ -322,13 +223,6 @@ CREATE TABLE `semester` (
   `tahun_semester` varchar(100) NOT NULL,
   `status_semester` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `semester`
---
-
-INSERT INTO `semester` (`id_semester`, `nama_semester`, `tahun_semester`, `status_semester`) VALUES
-(1, 'GANJIL', '2022/2023', '');
 
 --
 -- Indexes for dumped tables
@@ -408,12 +302,12 @@ ALTER TABLE `semester`
 -- AUTO_INCREMENT for table `dosen`
 --
 ALTER TABLE `dosen`
-  MODIFY `id_dosen` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_dosen` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `id_jadwal` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_jadwal` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `jawaban`
 --
@@ -423,27 +317,27 @@ ALTER TABLE `jawaban`
 -- AUTO_INCREMENT for table `jurusan`
 --
 ALTER TABLE `jurusan`
-  MODIFY `id_jur` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_jur` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id_kelas` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_kelas` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id_mahasiswa` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_mahasiswa` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `matakul`
 --
 ALTER TABLE `matakul`
-  MODIFY `id_matakul` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_matakul` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `penilaian`
 --
 ALTER TABLE `penilaian`
-  MODIFY `id_penilaian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_penilaian` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pertanyaan`
 --
@@ -453,12 +347,12 @@ ALTER TABLE `pertanyaan`
 -- AUTO_INCREMENT for table `ruangan`
 --
 ALTER TABLE `ruangan`
-  MODIFY `id_ruangan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_ruangan` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `semester`
 --
 ALTER TABLE `semester`
-  MODIFY `id_semester` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;COMMIT;
+  MODIFY `id_semester` int(10) NOT NULL AUTO_INCREMENT;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

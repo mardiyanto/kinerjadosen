@@ -36,9 +36,9 @@ unlink("../gambar/user/$foto");
 mysqli_query($koneksi, "delete from user where user_id='$_GET[user_id]'");
 echo "<script>window.location=('proses.php?aksi=admin')</script>";
 }
-elseif($_GET['aksi']=='hapuspegawai'){
-  mysqli_query($koneksi,"DELETE FROM pegawai  WHERE id_pegawai='$_GET[id_pegawai]'");
-  echo "<script>window.location=('proses.php?aksi=pegawai')</script>";
+elseif($_GET['aksi']=='hapusjadwal'){
+  mysqli_query($koneksi,"DELETE FROM jadwal  WHERE id_jadwal='$_GET[id_jadwal]'");
+  echo "<script>window.location=('proses.php?aksi=jadwal')</script>";
   }
 elseif($_GET['aksi']=='hapusberkas'){
     $tebaru=mysqli_query($koneksi," SELECT * FROM pegawai WHERE  id_pegawai=$_GET[id_pegawai]");

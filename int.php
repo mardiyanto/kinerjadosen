@@ -304,7 +304,7 @@ elseif($_GET['aksi']=='matakul'){
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////
     
-    elseif($_GET['aksi']=='editjurusan'){
+    elseif($_GET['aksi']=='editmatakul'){
     $tebaru=mysqli_query($koneksi," SELECT * FROM matakul WHERE id_matakul=$_GET[id_matakul] ");
     $t=mysqli_fetch_array($tebaru);
     echo"
@@ -315,7 +315,7 @@ elseif($_GET['aksi']=='matakul'){
             </div>
             <div class='panel-body'>
     <form id='form1'  method='post' action='edit.php?aksi=proseseditmatakul&id_matakul=$t[id_matakul]'>
-    <label>Nama Jurusan</label>
+    <label>Nama MATAKULIAH</label>
     <input type='text' class='form-control' value='$t[nama_matakul]' name='nama_matakul'/><br>
     <div class='modal-footer'>
                                 <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
