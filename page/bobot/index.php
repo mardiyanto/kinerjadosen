@@ -53,36 +53,20 @@
 
     <?php if ($sudah_isi == 0): ?>
         <form method="post">
-          <table class="table table-bordered table-striped">
-            <thead>
-            <tr>
-              <?php 
+        <table class="table table-bordered table-striped">
+        <thead>
+        <?php 
                 $sql = "select * from kriteria";
                 $query = mysqli_query($con, $sql);
                 while ($row = mysqli_fetch_assoc($query)):
-               ?>
-              <th><?= $row['kriteria'] ?></th>
-              <?php endwhile; ?>
-            </tr>
-            </thead>
-            <tbody>
-              <tr>
-            	<?php 
-                  $sql = "select * from kriteria";
-                  $query = mysqli_query($con, $sql);
-                  $count = mysqli_num_rows($query);
-                  while ($row = mysqli_fetch_assoc($query)):
-                    $id = $row['id_kriteria'];
-                 ?>
-              
-                <td><input id="input<?= $id;?>" type="number" style="width: 90%;" name="input<?php echo $id; ?>"></td>
-                
-              
-              <?php 
-                endwhile; 
-              ?>
-              </tr>
-            </tbody>
+                  $id = $row['id_kriteria'];
+               ?>      
+  <tr>
+    <td><?= $row['kriteria'] ?></td>
+    <td><input id="input<?= $id;?>" type="number" style="width: 90%;" name="input<?php echo $id; ?>"></td>
+  </tr>
+  <?php endwhile; ?>
+  </thead>
             <tfoot>
               <tr>
                 <td colspan="<?= $count + 1 ?>" align="right">
@@ -95,38 +79,17 @@
     <?php else: ?>
       <table class="table table-bordered table-striped">
             <thead>
-            <tr>
-              <?php 
-                $sql = "select * from kriteria";
+ <?php 
+                $sql = "select * from kriteria,nilai_kriteria WHERE kriteria.id_kriteria=nilai_kriteria.id_kriteria";
                 $query = mysqli_query($con, $sql);
                 while ($row = mysqli_fetch_assoc($query)):
                ?>
+            <tr>
               <th><?= $row['kriteria'] ?></th>
-              <?php endwhile; ?>
+              <th><?= $row['nilai'] ?></th>
             </tr>
+            <?php endwhile; ?>
             </thead>
-            <tbody>
-                <tr>
-              <?php 
-                  $sql = "select * from kriteria";
-                  $query = mysqli_query($con, $sql);
-                  $count = mysqli_num_rows($query);
-                  while ($row = mysqli_fetch_assoc($query)):
-                    $id = $row['id_kriteria'];
-                    $sql = "SELECT * FROM nilai_kriteria";
-                    $query = mysqli_query($con, $sql);
-                    while ($n=mysqli_fetch_array($query)) {?>
-                <td><?= $n['nilai']?></td>
-                  <?php }  ?>
-                
-                
-              
-              <?php 
-                endwhile; 
-              ?>
-              </tr>
-            </tbody>
-
               <tfoot>
                 <tr>
                   <th colspan="<?= ($count-1) ?>"><span class="pull-right">Total</span></th>
