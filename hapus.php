@@ -39,32 +39,23 @@ echo "<script>window.location=('proses.php?aksi=admin')</script>";
 elseif($_GET['aksi']=='hapusjadwal'){
   mysqli_query($koneksi,"DELETE FROM jadwal  WHERE id_jadwal='$_GET[id_jadwal]'");
   echo "<script>window.location=('proses.php?aksi=jadwal')</script>";
-  }
-elseif($_GET['aksi']=='hapusberkas'){
-    $tebaru=mysqli_query($koneksi," SELECT * FROM pegawai WHERE  id_pegawai=$_GET[id_pegawai]");
-    $t=mysqli_fetch_array($tebaru);
-    $data = mysqli_query($koneksi, "select * from file where file_id='$_GET[file_id]'");
-    $d = mysqli_fetch_assoc($data);
-    $file = $d['file_name'];
-    unlink("upload/$file");
-    mysqli_query($koneksi, "delete from file where file_id='$_GET[file_id]'");
-    echo "<script>window.location=('proses.php?aksi=listuploadfile&id_pegawai=$t[id_pegawai]')</script>";
 }
-elseif($_GET['aksi']=='hapuskeluarga'){
-  $tebaru=mysqli_query($koneksi," SELECT * FROM pegawai WHERE  id_pegawai=$_GET[id_pegawai]");
-  $t=mysqli_fetch_array($tebaru);
-  mysqli_query($koneksi,"DELETE FROM keluarga  WHERE id_keluarga='$_GET[id_keluarga]'");
-  echo "<script>window.location=('proses.php?aksi=listtunjangan&id_pegawai=$t[id_pegawai]')</script>";
-  }
-  elseif($_GET['aksi']=='hapustunjangan'){
-    mysqli_query($koneksi,"DELETE FROM tunjangan  WHERE id_tunjangan='$_GET[id_tunjangan]'");
-    mysqli_query($koneksi,"UPDATE pegawai SET status_pg='ada' WHERE id_pegawai='$_GET[id_pegawai]'"); 
-    echo "<script>window.location=('proses.php?aksi=tunjangan')</script>";
-    } 
-elseif($_GET['aksi']=='hapuspangku'){
-      mysqli_query($koneksi,"DELETE FROM pemangku  WHERE 	id_pkjab='$_GET[id_pkjab]'");
-      echo "<script>window.location=('proses.php?aksi=pangku')</script>";
- }    
- 
+
+elseif($_GET['aksi']=='hapusjawaban'){
+  mysqli_query($koneksi,"DELETE FROM jawaban  WHERE id_jawaban='$_GET[id_jawaban]'");
+  echo "<script>window.location=('proses.php?aksi=jawaban')</script>";
+}
+elseif($_GET['aksi']=='hapustunpertanyaan'){
+    mysqli_query($koneksi,"DELETE FROM pertanyaan  WHERE id_pertanyaan='$_GET[id_pertanyaan]'");
+    echo "<script>window.location=('proses.php?aksi=pertanyaan')</script>";
+} 
+elseif($_GET['aksi']=='hapuskelas'){
+      mysqli_query($koneksi,"DELETE FROM kelas  WHERE 	id_kelas='$_GET[id_kelas]'");
+      echo "<script>window.location=('proses.php?aksi=kelas')</script>";
+}    
+elseif($_GET['aksi']=='hapussemester'){
+  mysqli_query($koneksi,"DELETE FROM semester  WHERE 	id_semester='$_GET[id_semester]'");
+  echo "<script>window.location=('proses.php?aksi=semester')</script>";
+} 
 
 ?>
