@@ -11,7 +11,7 @@
     echo "<script>alert('Harap login terlebih dahulu');window.location.href='login-msiswa.php'</script>";
   }
   
-   // Menampilkan data pengguna yang sudah login
+ // Menampilkan data pengguna yang sudah login
 $id_mahasiswa = $_SESSION['id_mahasiswa'];
 $nama_mahasiswa = $_SESSION['nama_mahasiswa'];
 $nim = $_SESSION['nim'];
